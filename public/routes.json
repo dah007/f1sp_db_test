@@ -1,0 +1,8 @@
+{
+  "routes": [
+    {
+      "route": "/rest/*",
+      "rewrite": "https://my-dab-api.azurewebsites.net/rest/*"
+    }
+  ]
+}
