@@ -27,6 +27,19 @@
     }
   },
   "entities": {
+    "constructors": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "constructors_with_data"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
     "Driver": {
       "source": "driver",
       "permissions": [
