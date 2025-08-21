@@ -27,6 +27,19 @@
     }
   },
   "entities": {
+    "circuitWYear": {
+      "source": {
+        "type": "view",
+        "key-fields": ["race_id"],
+        "object": "circuit_w_race_year"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
     "constructors": {
       "source": {
         "type": "view",
@@ -40,8 +53,116 @@
         }
       ]
     },
-    "Driver": {
+
+    "driver": {
       "source": "driver",
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "driverOfTheDay": {
+      "source": {
+        "type": "view",
+        "key-fields": ["race_id"],
+        "object": "dod_w_driver"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "drivers": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "driver_w_data"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "driversStandings": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "driver_w_standings"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "engine_manufacturers": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "engine_manufacturers_w_country"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "engines": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "engine_w_country"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "tyres": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "tyre_manufacturer_w_data"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "fastestLap": {
+      "source": {
+        "type": "view",
+        "key-fields": ["race_id"],
+        "object": "fastest_lap_w_driver"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "fastestLapsByYear": {
+      "source": {
+        "type": "view",
+        "key-fields": ["year"],
+        "object": "fastest_laps_by_year"
+      },
       "permissions": [
         {
           "actions": ["read"],
