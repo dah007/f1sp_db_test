@@ -314,6 +314,113 @@
           "role": "anonymous"
         }
       ]
+    },
+    "previousRaceResults": {
+      "source": {
+        "type": "view",
+        "key-fields": ["circuit_id"],
+        "object": "results_w_data"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "raceWinner": {
+      "source": {
+        "type": "view",
+        "key-fields": ["race_id"],
+        "object": "race_winner"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "standingsWithConstructors": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "standings_w_constructors"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "standingsWithDrivers": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "standings_w_drivers"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "totalDNFBySeason": {
+      "source": {
+        "type": "view",
+        "key-fields": ["year"],
+        "object": "total_dnf_by_season"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "totalWinsByYear": {
+      "source": {
+        "type": "view",
+        "key-fields": ["year"],
+        "object": "total_wins_by_year"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "totalWinsBySeason": {
+      "source": {
+        "type": "view",
+        "key-fields": ["year"],
+        "object": "total_wins_by_season"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "totalConstructorWinsBySeason": {
+      "source": {
+        "type": "view",
+        "key-fields": ["year"],
+        "object": "total_constructor_wins_by_season"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }
