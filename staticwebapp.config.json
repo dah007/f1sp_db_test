@@ -1,15 +1,48 @@
 {
-  "navigationFallback": {
-    "rewrite": "/index.html"
-  },
-  "routes": [
-    {
-      "route": "/api/*",
-      "allowedRoles": ["anonymous"]
+    "globalHeaders": {
+        "Access-Control-Allow-Origin": "*"
     },
-    {
-      "route": "/data-api/*",
-      "allowedRoles": ["anonymous"]
-    }
-  ]
+    "mimeTypes": {
+        ".geojson": "application/geo+json",
+        ".js": "application/javascript",
+        ".json": "application/json",
+        ".mjs": "application/javascript",
+        ".css": "text/css"
+    },
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": [
+            "/assets/*",
+            "*.js",
+            "*.css",
+            "*.mjs",
+            "*.json",
+            "*.png",
+            "*.jpg",
+            "*.jpeg",
+            "*.gif",
+            "*.svg",
+            "*.ico",
+            "/favicon.ico",
+            "/favicon.png",
+            "/manifest.json"
+        ]
+    },
+    "routes": [
+        {
+            "route": "/api/*",
+            "allowedRoles": ["anonymous"]
+        },
+        {
+            "route": "/data-api/*",
+            "allowedRoles": ["anonymous"]
+        },
+        {
+            "route": "/assets/*",
+            "headers": {
+                "cache-control": "must-revalidate, max-age=15770000"
+            }
+        }
+    ],
+    "trailingSlash": "auto"
 }
