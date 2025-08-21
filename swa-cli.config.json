@@ -3,7 +3,7 @@
     "configurations": {
         "-f1sp": {
             "appLocation": "./src",
-            "outputLocation": "dist",
+            "outputLocation": "build",
             "dataApiLocation": "swa-db-connections",
             "appBuildCommand": "npm run build",
             "run": "npm run dev",

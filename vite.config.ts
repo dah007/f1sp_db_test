@@ -13,12 +13,13 @@ export default defineConfig({
         tailwindcss(),
         tsconfigPaths(),
         visualizer({
-            filename: 'dist/stats.html',
+            filename: 'build/stats.html',
             open: false,
             gzipSize: true,
         }),
     ],
     build: {
+        outDir: 'build',
         // Add optimization settings
         chunkSizeWarningLimit: 1000, // Increase warning threshold
         cssCodeSplit: true,
