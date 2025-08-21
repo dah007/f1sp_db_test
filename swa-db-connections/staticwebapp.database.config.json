@@ -169,6 +169,151 @@
           "role": "anonymous"
         }
       ]
+    },
+    "lastResultsByCircuit": {
+      "source": {
+        "type": "view",
+        "key-fields": ["circuit_id"],
+        "object": "results_w_data"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "maxRaceIdByCircuit": {
+      "source": {
+        "type": "view",
+        "key-fields": ["circuit_id"],
+        "object": "max_race_id_by_circuit"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "pitStop": {
+      "source": {
+        "object": "pit_stop",
+        "key-fields": ["race_id"],
+        "type": "view"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "pollPosition": {
+      "source": {
+        "type": "view",
+        "key-fields": ["race_id"],
+        "object": "race_result"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+
+    "races": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "race_w_data"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "raceCountByCircuit": {
+      "source": {
+        "type": "view",
+        "key-fields": ["totalRaceCount"],
+        "object": "race_count_by_circuit"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "raceCount": {
+      "source": {
+        "type": "view",
+        "key-fields": ["totalRaceCount"],
+        "object": "race_count"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "raceNext": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "race_next"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "raceResults": {
+      "source": {
+        "type": "view",
+        "key-fields": ["race_id"],
+        "object": "rr_w_driver"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "raceGP": {
+      "source": {
+        "type": "view",
+        "key-fields": ["id"],
+        "object": "race_w_gp"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "previousFirstPlaceResults": {
+      "source": {
+        "type": "view",
+        "key-fields": ["circuit_id"],
+        "object": "previous_first_place_results"
+      },
+      "permissions": [
+        {
+          "actions": ["read"],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }
