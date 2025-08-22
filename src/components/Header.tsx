@@ -252,14 +252,14 @@ const Header: React.FC = () => {
 
             {/* MOBILE MENU */}
             <ul id="menu" className="hidden fixed top-0 right-0 px-10 py-16 bg-zinc-900 z-50">
-                <li>
+                {/* <li>
                     <MenuButton label="Vote" onClick={() => handleNavigationMobile('/vote')} />
-                </li>
+                </li> */}
                 <div className="w-full grid grid-cols-3">
                     <div>
-                        <li className="ml-4">
+                        {/* <li className="ml-4">
                             <MenuButton label="Leaderboard" onClick={() => handleNavigationMobile('/leaderboard')} />
-                        </li>
+                        </li> */}
 
                         <li>
                             <MenuButton label="Races" onClick={() => handleNavigationMobile('/races')} />

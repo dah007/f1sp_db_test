@@ -22,6 +22,7 @@ export function DesktopNavigation() {
         <div className="flex flex-col w-full">
             <NavigationMenu>
                 <NavigationMenuList>
+                    {/* TODO: Finish voting 
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className={cn('text-red-500 font-extrabold text-xl')}>
                             Vote
@@ -36,7 +37,7 @@ export function DesktopNavigation() {
                                 </ListItem>
                             </ul>
                         </NavigationMenuContent>
-                    </NavigationMenuItem>
+                    </NavigationMenuItem> */}
 
                     <NavigationMenuItem>
                         <NavigationMenuTrigger className={menuButton}>Races</NavigationMenuTrigger>
