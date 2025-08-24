@@ -11,14 +11,14 @@ export const REST_URL = `${base}/data-api/${rest}`;
 /** @deprecated */
 export const F1SP_BASE_DB_URL = BASE_URL;
 
-export const BUTTON_CLASSES = 'cursor-pointer bg-zinc-300 dark:bg-zinc-800';
+export const BUTTON_CLASSES = 'cursor-pointer bg-zinc-300 dark:bg-zinc-800 border border-zinc-600';
 // 'border-2 border-gray-300 bg-sky-950 hover:bg-sky-600 text-white hover:text-black cursor-pointer';
 
 export const CIRCUIT_TYPES = {
     RACE: 'Race Circuit',
     ROAD: 'Road Circuit',
     STREET: 'Street Circuit',
-}
+};
 
 export const DEBUG = import.meta.env.VITE_DEBUG;
 export const DESCRIPTION = import.meta.env.VITE_DESCRIPTION;

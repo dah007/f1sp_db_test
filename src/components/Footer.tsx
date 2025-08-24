@@ -58,7 +58,7 @@ const Footer = () => {
                         {/* LEFT */}
                         <p className="font-medium text-gray-900 dark:text-white">Menu</p>
                         <ul>
-                            <li>
+                            {/* <li>
                                 <MenuButton
                                     label="Vote"
                                     onClick={() => handleNavigationMobile('/vote')}
@@ -72,7 +72,7 @@ const Footer = () => {
                                         onClick={() => handleNavigationMobile('/leaderboard')}
                                     />
                                 </li>
-                            </ul>
+                            </ul> */}
 
                             <li>
                                 <MenuButton label="Races" onClick={() => handleNavigationMobile('/races')} />

@@ -35,7 +35,6 @@ const racesSlice = createSlice({
             state.lastRaceResults = action.payload;
         },
         setRaceNext(state, action: PayloadAction<Partial<RaceProps> | null>) {
-            console.log('setRaceNext:', action.payload);
             state.raceNext = action.payload;
         },
         setRaces(state, action: PayloadAction<RaceProps[]>) {

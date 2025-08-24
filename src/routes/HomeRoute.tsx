@@ -15,7 +15,7 @@ import { setError, setLoading } from 'slices/systemWideSlice';
 
 import { cn } from '@/lib/utils';
 
-import CardContainer from 'components/CardContainer';
+import Card from '@/components/Card';
 import ConstructorStandings from 'components/ConstructorsStandingsTable';
 import DriverStandingsChart from 'components/DriverStandingsChart';
 import ErrorDialog from 'components/ErrorDialog';
@@ -23,7 +23,7 @@ import LastRaceResultsPod from 'components/LastRaceResultsPod';
 import NextRaceBanner from 'components/NextRaceBanner';
 import TotalWinsPerYear from 'components/TotalWinsPerYear';
 import { Alert, AlertDescription, AlertTitle } from 'components/ui/alert';
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from 'components/ui/card';
+import { CardContent, CardFooter, CardHeader, CardTitle } from 'components/ui/card';
 import { InfoIcon } from 'lucide-react';
 
 interface MessageFromURLResult {
@@ -106,12 +106,12 @@ const Home: React.FC = () => {
         }
         if (dataIsLoading) dispatch(setLoading(true));
         if (!dataResults) return;
-        console.log('lastRaceResults dataResults:', dataResults);
+
         dispatch(setLastRaceResults(dataResults));
         dispatch(setLoading(false));
     }, [dataResults, dataIsError, dataIsLoading, dispatch]);
 
-    const widthsNHeights = 'h-[25vh] md:h-[35vh]';
+    const widthsNHeights = 'h-[25vh] sm:h-[15vh] md:h-[35vh]';
 
     const { success: voteSuccessful, message: voteMessage } = getMessageFromURL();
 
@@ -185,12 +185,7 @@ const Home: React.FC = () => {
                 w-full"
                 >
                     <div className={cn('col-start-1 row-start-1', widthsNHeights)}>
-                        <Card
-                            className={cn(
-                                'bg-gradient-to-r from-zinc-900 to-zinc-800 border-zinc-700 overflow-hidden',
-                                widthsNHeights,
-                            )}
-                        >
+                        <Card className={widthsNHeights}>
                             <CardHeader>
                                 <CardTitle className="flex items-center justify-between">
                                     Last Race: {raceWGP ? raceWGP.official_name : 'N/A'}
@@ -203,22 +198,19 @@ const Home: React.FC = () => {
                     </div>
 
                     <div className={cn('col-start-1', 'row-start-2', widthsNHeights)}>
-                        <CardContainer
-                            className={cn('overflow-hidden', 'bg-zinc-900/50', widthsNHeights)}
-                            title="Constructors Standings"
-                        >
+                        <Card className={widthsNHeights} title="Constructors Standings">
                             <ConstructorStandings />
-                        </CardContainer>
+                        </Card>
                     </div>
 
                     <div className={cn('col-start-1 md:col-start-2 row-start-3 md:row-start-2 ', widthsNHeights)}>
-                        <CardContainer className={cn('overflow-hidden', widthsNHeights)} title="Total Wins this season">
+                        <Card className={cn('overflow-hidden', widthsNHeights)} title="Total Wins this season">
                             <TotalWinsPerYear />
-                        </CardContainer>
+                        </Card>
                     </div>
 
                     <div className={cn('col-start-2 row-start-1', widthsNHeights)}>
-                        <CardContainer
+                        <Card
                             className={cn('overflow-hidden', widthsNHeights)}
                             title={`Driver Standings`}
                             childrenClassName="flex flex-col items-end h-full justify-end w-full"
@@ -234,7 +226,7 @@ const Home: React.FC = () => {
                                     View Full Standings
                                 </button>
                             </CardFooter>
-                        </CardContainer>
+                        </Card>
                     </div>
                 </div>
             </div>

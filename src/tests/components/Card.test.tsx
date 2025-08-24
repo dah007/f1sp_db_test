@@ -1,13 +1,13 @@
 import { render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import CardContainer from '../../components/CardContainer';
+import Card from '../../components/Card';
 
 describe('CardContainer Component', () => {
     it('renders children correctly', () => {
         render(
-            <CardContainer>
+            <Card>
                 <div data-testid="child-content">Child Content</div>
-            </CardContainer>,
+            </Card>,
         );
         expect(screen.getByTestId('child-content')).toBeInTheDocument();
     });
@@ -20,16 +20,16 @@ describe('CardContainer Component', () => {
             // indicating it's a skeleton
             // This simulates a slow loading state
             return (
-                <CardContainer>
+                <Card>
                     <div className="skeleton">Loading...</div>
-                </CardContainer>
+                </Card>
             );
         };
 
         render(
-            <CardContainer>
+            <Card>
                 <SlowedownCard />
-            </CardContainer>,
+            </Card>,
         );
         // Find the skeleton component
         const skeleton = document.querySelector('.skeleton');
@@ -38,32 +38,30 @@ describe('CardContainer Component', () => {
 
     it('renders title when provided', () => {
         const testTitle = 'Test Card Title';
-        render(<CardContainer title={testTitle}>Content</CardContainer>);
+        render(<Card title={testTitle}>Content</Card>);
         expect(screen.getByText(testTitle)).toBeInTheDocument();
     });
 
     it('renders description when provided', () => {
         const testDescription = 'Test Card Description';
-        render(<CardContainer description={testDescription}>Content</CardContainer>);
+        render(<Card description={testDescription}>Content</Card>);
         expect(screen.getByText(testDescription)).toBeInTheDocument();
     });
 
     it('renders footer when provided', () => {
-        render(
-            <CardContainer footer={<button data-testid="footer-button">Footer Button</button>}>Content</CardContainer>,
-        );
+        render(<Card footer={<button data-testid="footer-button">Footer Button</button>}>Content</Card>);
         expect(screen.getByTestId('footer-button')).toBeInTheDocument();
     });
 
     it('does not render header when neither title nor description is provided', () => {
-        render(<CardContainer>Content</CardContainer>);
+        render(<Card>Content</Card>);
         const header = document.querySelector('.card-header');
         expect(header).not.toBeInTheDocument();
     });
 
     it('applies custom className to the Card component', () => {
         const customClass = 'custom-card-class';
-        render(<CardContainer className={customClass}>Content</CardContainer>);
+        render(<Card className={customClass}>Content</Card>);
         const card = document.querySelector('.card');
         expect(card).toHaveClass(customClass);
         expect(card).toHaveClass('dark:bg-zinc-900');
@@ -72,7 +70,7 @@ describe('CardContainer Component', () => {
 
     it('applies custom className to the CardContent component', () => {
         const customClass = 'custom-content-class';
-        render(<CardContainer childrenClassName={customClass}>Content</CardContainer>);
+        render(<Card childrenClassName={customClass}>Content</Card>);
         const content = document.querySelector('.children-div');
         expect(content).toHaveClass(customClass);
     });
@@ -80,9 +78,9 @@ describe('CardContainer Component', () => {
     it('applies custom className to the title', () => {
         const customClass = 'custom-title-class';
         render(
-            <CardContainer title="Test Title" titleClassName={customClass}>
+            <Card title="Test Title" titleClassName={customClass}>
                 Content
-            </CardContainer>,
+            </Card>,
         );
         const title = screen.getByText('Test Title');
         expect(title).toHaveClass(customClass);
@@ -92,9 +90,9 @@ describe('CardContainer Component', () => {
     it('applies custom className to the description', () => {
         const customClass = 'custom-description-class';
         render(
-            <CardContainer description="Test Description" descriptionClassName={customClass}>
+            <Card description="Test Description" descriptionClassName={customClass}>
                 Content
-            </CardContainer>,
+            </Card>,
         );
         const description = screen.getByText('Test Description');
         expect(description).toHaveClass(customClass);
@@ -103,9 +101,9 @@ describe('CardContainer Component', () => {
     it('applies custom className to the footer', () => {
         const customClass = 'custom-footer-class';
         render(
-            <CardContainer footer={<div>Footer Content</div>} footerClassName={customClass}>
+            <Card footer={<div>Footer Content</div>} footerClassName={customClass}>
                 Content
-            </CardContainer>,
+            </Card>,
         );
         const footer = document.querySelector('.card-footer');
         expect(footer).toHaveClass(customClass);

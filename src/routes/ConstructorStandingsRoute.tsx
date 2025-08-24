@@ -1,5 +1,5 @@
 import { RootState, useAppSelector } from '@/app/store';
-import CardContainer from '@/components/CardContainer';
+import Card from '@/components/Card';
 import TeamPerformanceRadar from '@/components/charts/TeamPerformanceRadar';
 import ConstructorStandingsTable from '@/components/ConstructorsStandingsTable';
 import PageContainer from '@/components/PageContainer';
@@ -23,6 +23,8 @@ export interface ColorizedConstructorProps {
     points: number;
     position_number: number;
     year: number;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    [key: string]: any;
 }
 
 const ConstructorStandings: React.FC = (): JSX.Element => {
@@ -35,7 +37,7 @@ const ConstructorStandings: React.FC = (): JSX.Element => {
     };
     const colorConstructors = useAppSelector((state: RootState) =>
         selectConstructorStandings(state),
-    ) satisfies ColorizedConstructorProps[];
+    ) as ColorizedConstructorProps[];
 
     useEffect(() => {
         if (!constructorsData) return;
@@ -45,21 +47,22 @@ const ConstructorStandings: React.FC = (): JSX.Element => {
 
     return (
         <PageContainer
-            title={`Constructor Standings ${selectedYear ?? YEAR}`}
-            showTitle={true}
-            showBreadcrumbs={true}
+            className="h-full"
             lastCrumb="Constructors"
+            showBreadcrumbs={true}
+            showTitle={true}
+            title={`Constructor Standings ${selectedYear ?? YEAR}`}
         >
-            <CardContainer className={cn('w-full')}>
+            <Card className={cn('w-full')}>
                 <div className="flex flex-col md:flex-row w-full gap-4">
                     <div className="w-full">
                         <TeamPerformanceRadar data={removeDuplicates(colorConstructors, 'constructor_id')} />
                     </div>
-                    <div className="flex-1">
+                    <div className="flex-1 h-full">
                         <ConstructorStandingsTable />
                     </div>
                 </div>
-            </CardContainer>
+            </Card>
             {/* </CardContainer> */}
         </PageContainer>
     );

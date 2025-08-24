@@ -39,6 +39,8 @@ const CircuitSelect = ({
         <Select
             onValueChange={(circuit) => {
                 if (gotoCircuit && setCircuit && map) {
+                    console.log('-=-=-=-=-=-=- Selected circuit ID:', circuit);
+                    setCircuit(circuitsData[circuit]);
                     gotoCircuit({
                         circuitId: circuit,
                         map: map,
@@ -51,7 +53,7 @@ const CircuitSelect = ({
             <SelectTrigger role="button" className={BUTTON_CLASSES}>
                 <SelectValue placeholder={circuit?.full_name || 'Select Circuit'} />
             </SelectTrigger>
-            <SelectContent className={SELECT_CLASSES}>
+            <SelectContent className={`${SELECT_CLASSES} z-[10000]`}>
                 {Object.keys(circuitsData).map((key) => (
                     <SelectItem key={key} value={key}>
                         {circuitsData[key].full_name}

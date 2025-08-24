@@ -9,7 +9,7 @@ import { selectConstructorStandings, selectDriverStandings } from 'selectors/sta
 import { setConstructorStandings, setDriverStandings } from 'slices/standingsSlice';
 
 // for recharts v2.1 and above
-import CardContainer from '@/components/CardContainer';
+import CardContainer from '@/components/Card';
 import ConstructorStandings from '@/components/ConstructorsStandingsTable';
 import DriverStandings from '@/components/DriverStandings';
 import { cn } from '@/lib/utils';

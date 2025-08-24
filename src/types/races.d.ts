@@ -52,6 +52,7 @@ export type PolePosition = {
 export type RaceProps = {
     [x: string]: string | number | boolean | null | undefined;
     circuit_id: string;
+    circuit_name: string;
     circuit_type: string;
     constructor: string;
     countryCode: string;
