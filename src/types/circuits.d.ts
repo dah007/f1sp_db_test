@@ -1,27 +1,26 @@
-
 export type BBoxType = LngLatBounds | [LngLatLike, LngLatLike] | [number, number, number, number];
 
 export type CircuitProps = {
-    altitude: number | null;
+    altitude?: number;
     bbox: BBoxType;
-    circuitType: string | null;
+    circuitType: string | undefined;
     continent?: string;
-    country: string | null;
-    date?: string | null;
-    firstgp: number | null;
-    full_name: string | null;
+    country: string | undefined;
+    date?: string | undefined;
+    firstgp: number | undefined;
+    full_name: string | undefined;
     id: string;
     latitude: number;
-    length: number | null;
+    length: number | undefined;
     longitude: number;
-    name: string | null;
-    official_name: string | null;
-    opened: number | null;
-    place_name: string | null;
-    raceDate?: string | null;
-    shortName: string | null;
+    name: string | undefined;
+    official_name: string | undefined;
+    opened: number | undefined;
+    place_name: string | undefined;
+    raceDate?: string | undefined;
+    shortName: string | undefined;
     timezone: {
-        dst: boolean
+        dst: boolean;
         offset: number;
         start: {
             month: number;
@@ -33,9 +32,10 @@ export type CircuitProps = {
             day: number;
             hour: number;
         };
-        name: string | null;
-    },    // string | null;
-    wiki?: string | null;
+        name: string | undefined;
+    };
+    turns?: number | undefined;
+    wiki?: string | undefined;
 };
 
 export type CircuitDetailsProps = {
@@ -51,7 +51,7 @@ export type ContinentProps = {
 export type CircuitLabelProps = {
     circuitsData: CircuitProps[] | undefined;
     id: string;
-    map: Map | null;
+    map: Map | undefined;
     newBBox: number[];
     originalLabel: string;
     setDropdownLabel: (label: string) => void;
@@ -60,7 +60,7 @@ export type CircuitLabelProps = {
 export interface FlyToPOIProps {
     circuitsData: CircuitProps[] | undefined;
     circuit: CircuitProps;
-    map: Map | null;
+    map: Map | undefined;
     setDropdownLabel: (label: string) => void;
     setSelectedCircuit: (circuit: CircuitProps | undefined) => void;
 }
@@ -68,38 +68,38 @@ export interface FlyToPOIProps {
 export interface FlyToProps {
     position: LngLatLike;
     continent: string;
-    map: Map | null;
+    map: Map | undefined;
     setSelectedCircuit: (circuit: CircuitProps | undefined) => void;
 }
 
 export interface GotoCircuitProps {
     circuitId: string;
-    map: Map | null;
-    setCircuit: (circuit: CircuitProps) => void;
+    map: Map | undefined;
+    setCircuit?: (circuit: CircuitProps) => void;
     setContinent?: (continent: string) => void;
 }
 
 export interface GotoContinentProps {
     c: string;
-    map: Map | null;
+    map: Map | undefined;
     setC: (circuit: CircuitProps | undefined) => void;
     setCon: (continent: string) => void;
 }
 
 export interface LoadCircuitLayersProps {
     data: CircuitDetailsProps;
-    map: Map | null;
+    map: Map | undefined;
 }
 
 export interface ZoomToProps {
     position: LngLatLike;
     continent: string;
-    map: Map | null;
+    map: Map | undefined;
     zoomLevel?: number;
 }
 
 export interface CreateMarkerProps {
     circuit: CircuitProps;
-    map: Map | null;
+    map: Map | undefined;
     mapboxgl: typeof mapboxgl | mapboxgl;
 }

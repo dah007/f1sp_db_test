@@ -17,6 +17,7 @@ interface PageContainerProps {
     showBreadcrumbs?: boolean;
     showTitle?: boolean;
     title: string;
+    useScrollArea?: boolean;
 }
 
 // const { id, year } = useParams();
@@ -41,7 +42,17 @@ const PageContainer: React.FC<PageContainerProps> = ({
     showBreadcrumbs = true,
     showTitle = true,
     title,
+    useScrollArea = true,
 }: PageContainerProps): JSX.Element => {
+    const ContentArea: JSX.Element = useScrollArea ? (
+        <ScrollArea className="h-[80vh] w-full">
+            <ScrollAreaScrollbar />
+            {children}
+        </ScrollArea>
+    ) : (
+        <div className="w-full h-full">{children}</div>
+    );
+
     const raceDetails = useAppSelector((state) => state.races.raceDetails);
     return (
         <div className={cn('flex', 'flex-col', 'h-[80vh]', 'gap-2', className)}>
@@ -64,10 +75,7 @@ const PageContainer: React.FC<PageContainerProps> = ({
                 />
             )}
             <div>{showTitle && title && <Titles title={title} type="h1" />}</div>
-            <ScrollArea className="h-[80vh] w-full">
-                <ScrollAreaScrollbar />
-                {children}
-            </ScrollArea>
+            {ContentArea}
         </div>
     );
 };

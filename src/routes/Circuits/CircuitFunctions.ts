@@ -27,7 +27,6 @@ export const ORIGINAL_LABEL = '-- Select a circuit --';
  * @returns {void}
  */
 export const createMarker = ({ circuit, map, mapboxgl }: CreateMarkerProps): void => {
-    // if (!map) return;
     const el = document.createElement('div');
 
     el.className = 'marker mapMarker';
@@ -99,9 +98,11 @@ export const flyToContinent = ({ continent, map, setSelectedCircuit }: FlyToProp
  */
 export const flyToPOI = ({ circuit, circuitsData, map, setDropdownLabel, setSelectedCircuit }: FlyToPOIProps): void => {
     if (!map) return;
+    console.log('circuit.id??', circuit.id);
     // get the bbox for the _current_ map view
     const bbox = CIRCUIT_DETAILS[circuit.id]?.bbox;
-    setSelectedCircuit(circuit);
+    console.log('bbox', bbox);
+    setSelectedCircuit(CIRCUIT_DETAILS[circuit.id]);
 
     if (map && map.getBounds() && isBoundingBoxOutside(bbox, map.getBounds() as LngLatBounds)) {
         console.warn('------------------ inside - what next');
@@ -112,7 +113,7 @@ export const flyToPOI = ({ circuit, circuitsData, map, setDropdownLabel, setSele
 
     setDropdownLabel('Flying...');
     // fly to the center view on the bbox
-    map.fitBounds(bbox, {
+    map.fitBounds(CIRCUIT_DETAILS[circuit.id]?.bbox, {
         padding: { top: 25, bottom: 25, left: 15, right: 15 },
         ...zoomToDefaults,
     }).once('moveend', () => {
@@ -144,20 +145,21 @@ export const flyToPOI = ({ circuit, circuitsData, map, setDropdownLabel, setSele
  *
  * @returns {void}
  */
-export const gotoCircuit = ({ circuitId, map, setCircuit, setContinent }: GotoCircuitProps): void => {
+export const gotoCircuit = ({ circuitId, map /*, setCircuit, setContinent */ }: GotoCircuitProps): void => {
     const circuit = CIRCUIT_DETAILS[circuitId];
-    if (setContinent && circuit?.continent) {
-        setContinent(circuit.continent);
-    }
+    console.log('----------- gotoCircuit', circuit);
+    // if (setContinent && circuit?.continent) {
+    //     setContinent(circuit.continent);
+    // }
 
-    setCircuit(circuit);
-    flyToPOI({
-        circuit,
-        circuitsData: [], // or pass the actual circuits data
-        map,
-        setDropdownLabel: () => {},
-        setSelectedCircuit: () => {},
-    });
+    // setCircuit?.(circuit ? circuit : CIRCUIT_DETAILS['baku']);
+    // flyToPOI({
+    //     circuit,
+    //     circuitsData: [], // or pass the actual circuits data
+    //     map,
+    //     setDropdownLabel: () => {},
+    //     setSelectedCircuit: () => {},
+    // });
 };
 
 export const gotoContinent = ({ c, map, setC, setCon }: GotoContinentProps) => {
@@ -184,8 +186,6 @@ export const loadCircuitLayers = async ({ data, map }: LoadCircuitLayersProps) =
         uniqueArray?.map(async (circuit: CircuitProps) => {
             if (!map) return;
             try {
-                console.log('Loading geojson for circuit:', `/assets/tracks/${circuit.id}.geojson`);
-
                 if (!map) return;
 
                 map.addSource(circuit.id, {
