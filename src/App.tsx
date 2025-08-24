@@ -51,7 +51,6 @@ const App = () => {
         }
         if (raceNextLoading) dispatch(setLoading(true));
         if (!raceNextData) return;
-        console.log('raceNextData:', raceNextData);
         dispatch(setLoading(false));
         dispatch(setRaceNext(raceNextData as RaceNextProps));
     }, [nextRace, dispatch, raceNextData, raceNextLoading, raceNextError]);

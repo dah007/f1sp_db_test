@@ -3,10 +3,10 @@ import { setupListeners } from '@reduxjs/toolkit/query';
 import { useDispatch, useSelector } from 'react-redux';
 
 // API imports
-import { raceApi } from '@/features/raceApi';
 import { circuitsApi } from 'features/circuitsApi';
 import { constructorsApi } from 'features/constructorsApi';
 import { driversApi } from 'features/driversApi';
+import { raceApi } from 'features/raceApi';
 import { seasonsApi } from 'features/seasonsApi';
 import { standingsApi } from 'features/standingsApi';
 import { userApi } from 'features/userApi';
@@ -27,10 +27,10 @@ const apiEndpoints = [raceApi, circuitsApi, constructorsApi, driversApi, seasons
 export const store = configureStore({
     reducer: {
         // API reducers
-        [raceApi.reducerPath]: raceApi.reducer,
         [circuitsApi.reducerPath]: circuitsApi.reducer,
         [constructorsApi.reducerPath]: constructorsApi.reducer,
         [driversApi.reducerPath]: driversApi.reducer,
+        [raceApi.reducerPath]: raceApi.reducer,
         [seasonsApi.reducerPath]: seasonsApi.reducer,
         [standingsApi.reducerPath]: standingsApi.reducer,
         [userApi.reducerPath]: userApi.reducer,
@@ -42,7 +42,7 @@ export const store = configureStore({
         races: racesReducer,
         seasons: seasonApi,
         standings: standingsReducer,
-        systemWide: systemWideReducer, // Assuming this is the correct slice for system-wide state
+        systemWide: systemWideReducer,
         user: userReducer,
     },
     middleware: (getDefaultMiddleware) =>
