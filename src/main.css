@@ -244,7 +244,7 @@
 span[data=switch-thumb] {
     background-color: red;
     /* var(--foreground); */
-    color: blue;
+    color: var(--primary);
 }
 
 #airplane-mode {
