@@ -79,7 +79,7 @@ const HomeHeroRow = () => {
                 lg:grid-rows-1
                 md:grid-cols-2
                 md:grid-rows-2
-                sm:grid-col-1
+                sm:grid-cols-1
                 sm:grid-rows-4
                 grid-col-1 
                 grid-rows-4 gap-4 pb-4"
