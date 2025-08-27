@@ -37,7 +37,6 @@ const Constructors: React.FC = (): JSX.Element => {
         if (!constructorsData) return;
         dispatch(setConstructors(Array.isArray(constructorsData) ? constructorsData : [constructorsData]));
         setIsLoaded(true); // Mark data as loaded
-        console.log(constructorsData);
     }, [constructorsData, dispatch, isLoaded, constructors, constructorsError, constructorsLoading]);
 
     const colDefs = useMemo<ColumnDef<ConstructorProps>[]>(
