@@ -2,8 +2,8 @@ import React from 'react';
 
 import { Bar, BarChart, CartesianGrid, LabelList, XAxis, YAxis } from 'recharts';
 
-import { cn } from '@/lib/utils';
 import { type ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from 'components/ui/chart';
+import { cn } from 'lib/utils';
 
 interface ChartProps {
     className?: string;

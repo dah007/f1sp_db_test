@@ -22,13 +22,23 @@ const Constructors: React.FC = (): JSX.Element => {
     const constructors = useAppSelector((state: RootState) => state.constructors.constructors);
     const [isLoaded, setIsLoaded] = useState(false);
 
-    const { data: constructorsData } = useGetConstructorsQuery(undefined);
+    const {
+        data: constructorsData,
+        error: constructorsError,
+        isLoading: constructorsLoading,
+    } = useGetConstructorsQuery(undefined);
 
     useEffect(() => {
+        if (constructorsLoading) return;
+        if (constructorsError) {
+            console.error(constructorsError);
+            return;
+        }
         if (!constructorsData) return;
         dispatch(setConstructors(Array.isArray(constructorsData) ? constructorsData : [constructorsData]));
         setIsLoaded(true); // Mark data as loaded
-    }, [constructorsData, dispatch, isLoaded, constructors]);
+        console.log(constructorsData);
+    }, [constructorsData, dispatch, isLoaded, constructors, constructorsError, constructorsLoading]);
 
     const colDefs = useMemo<ColumnDef<ConstructorProps>[]>(
         () => [

@@ -1,11 +1,13 @@
+/* eslint-disable react-refresh/only-export-components */
+import React from 'react';
+
 import { YEAR } from '@/constants/constants';
-import { cn } from '@/lib/utils';
+import { cn } from 'lib/utils';
 import { LucideCoffee } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import Button from './Button';
 import { DesktopNavigation } from './DesktopNavigation';
+import { Button } from './ui/button';
 import F1SPlogoHorizontal from '/assets/f1sp-logo_horizontal.svg';
-import F1SPlogo from '/assets/f1sp.svg';
 
 export const constructorMenuItems: { title: string; href: string; description: string }[] = [
     {
@@ -233,23 +235,27 @@ const Header: React.FC = () => {
                     &#9776;
                 </button>
             </div>
-
             {/* LOGOS */}
-            <div className="flex lg:hidden xl:hidden justify-start grow pt-0 mt-0">
-                <a title="F1//sp home" onClick={() => handleNavigation('/')}>
-                    <img src={F1SPlogoHorizontal} alt="F1//sp Logo" className="w-36" />
-                </a>
+            {/* lg:hidden xl:hidden */}
+            <div className="flex justify-start grow pt-0 mt-0">
+                <Button
+                    type="button"
+                    className="cursor-pointer"
+                    variant="link"
+                    title="F1//sp home"
+                    onClick={() => handleNavigation('/')}
+                >
+                    <img src={F1SPlogoHorizontal} alt="F1//sp Logo" className="w-28" />{' '}
+                </Button>
             </div>
-            <div className="hidden md:hidden lg:flex xl:flex justify-start cursor-pointer">
-                <a title="F1//sp home" onClick={() => handleNavigation('/')}>
+            {/* <div className="hidden md:hidden lg:flex xl:flex justify-start cursor-pointer">
+                <button type="button" title="F1//sp home" onClick={() => handleNavigation('/')}>
                     <img src={F1SPlogo} alt="F1//sp Logo" className="w-24" />
-                </a>
-            </div>
-
+                </button>
+            </div> */}
             <div className="hidden lg:block w-full">
                 <DesktopNavigation />
             </div>
-
             {/* MOBILE MENU */}
             <ul id="menu" className="hidden fixed top-0 right-0 px-10 py-16 bg-zinc-900 z-50">
                 {/* <li>
@@ -328,17 +334,13 @@ const Header: React.FC = () => {
                                 target="_blank"
                                 title="Buy me a coffee"
                             >
-                                <LucideCoffee size="32" className="text-yellow-400 light:text-brown-500" />
+                                <LucideCoffee size={32} className="text-yellow-400 light:text-brown-500" />
                             </a>
                         </div>
                         <div className="lg:hidden z-90 fixed top-4 right-6">
-                            <a
-                                href="javascript:void(0)"
-                                className="text-right text-white text-4xl"
-                                onClick={toggleMenu}
-                            >
+                            <button type="button" className="text-right text-white text-4xl" onClick={toggleMenu}>
                                 &times;
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>

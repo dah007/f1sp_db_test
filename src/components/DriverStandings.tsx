@@ -8,8 +8,8 @@ import { setError, setLoading } from '@/slices/systemWideSlice';
 import { useGetDriverStandingsQuery } from 'features/standingsApi';
 import { setDriverStandings } from 'slices/standingsSlice';
 
-import { cn } from '@/lib/utils';
 import { FULL_ROW_HEIGHT, YEAR } from 'constants/constants';
+import { cn } from 'lib/utils';
 import { type DriverStanding } from 'types/standings';
 
 /**

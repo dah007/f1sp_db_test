@@ -7,11 +7,11 @@ import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from '
 import { YEAR } from '@/constants/constants';
 import { useGetDriverStandingsQuery } from '@/features/standingsApi';
 import { useAppDispatch } from '@/hooks/reduxHooks';
-import { cn } from '@/lib/utils';
 import { LocalDriverProps } from '@/routes/StandingsRoute';
 import { selectDriverStandings } from '@/selectors/standingsSelector';
 import { setDriverStandings } from '@/slices/standingsSlice';
 import { DriverStanding } from '@/types/standings';
+import { cn } from 'lib/utils';
 import { useEffect, useMemo } from 'react';
 import { Skeleton } from './ui/skeleton';
 

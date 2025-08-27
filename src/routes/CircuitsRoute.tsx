@@ -1,19 +1,20 @@
-import { CIRCUIT_DETAILS } from '@/constants/circuitConstants';
-import PageContainer from 'components/PageContainer';
+import { RootState, useAppSelector } from '@/app/store';
+
 import { useAppDispatch } from 'hooks/reduxHooks';
 import mapboxgl from 'mapbox-gl';
 import { JSX, useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { gotoCircuit, loadCircuitLayers, SHOW_PIN_ZOOM, updateMarkerVisibility } from './Circuits/CircuitFunctions';
 
-import { RootState, useAppSelector } from '@/app/store';
-import Card from '@/components/Card';
-import CircuitSelect from '@/components/CircuitSelect';
-import { CardContent, CardDescription, CardHeader } from '@/components/ui/card';
-import { ScrollArea } from '@/components/ui/scroll-area';
-import { BUTTON_CLASSES } from '@/constants/constants';
 import { setError } from '@/slices/systemWideSlice';
 import { intlNumberFormat } from '@/utils/number';
+import { Card, CardContent, CardDescription, CardHeader } from 'components/CardContainer';
+import CircuitSelect from 'components/CircuitSelect';
+import PageContainer from 'components/PageContainer';
+import { ScrollArea } from 'components/ui/scroll-area';
 import { CircuitProps } from 'types/circuits';
+
+import { BUTTON_CLASSES } from '@/constants/constants';
+import { CIRCUIT_DETAILS } from 'constants/circuitConstants';
 
 const Circuits: React.FC = (): JSX.Element => {
     const dispatch = useAppDispatch();

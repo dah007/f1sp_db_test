@@ -128,6 +128,7 @@ export interface RaceResultProps extends RaceProps {
     grid_position_number: number;
     id: number;
     laps: number;
+    length?: number;
     name: string;
     official_name?: string;
     permanent_number?: number;
@@ -141,6 +142,7 @@ export interface RaceResultProps extends RaceProps {
     round: number;
     short_name?: string;
     time: string;
+    turns?: number;
     year: number;
 }
 

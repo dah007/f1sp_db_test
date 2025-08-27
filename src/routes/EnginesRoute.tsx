@@ -1,11 +1,11 @@
 import { RootState, useAppDispatch, useAppSelector } from '@/app/store';
 import DataTable from '@/components/DataTable';
 import { useGetEnginesManufacturersQuery } from '@/features/constructorsApi';
-import { cn } from '@/lib/utils';
 import { setEnginesManufacturers } from '@/slices/constructorsSlice';
 import { setError, setLoading } from '@/slices/systemWideSlice';
 import { ManufacturerProps } from '@/types/constructors';
 import { ColumnDef } from '@tanstack/react-table';
+import { cn } from 'lib/utils';
 import { useEffect } from 'react';
 
 interface EnginesRouteProps {

@@ -1,4 +1,3 @@
-import { ConstructorStanding, DriverStanding } from '@/types/standings';
 import { RootState, useAppDispatch, useAppSelector } from 'app/store';
 import PageContainer from 'components/PageContainer';
 import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from 'components/ui/chart';
@@ -7,12 +6,13 @@ import React, { JSX, useEffect } from 'react';
 import { Bar, BarChart, LabelList, XAxis, YAxis } from 'recharts';
 import { selectConstructorStandings, selectDriverStandings } from 'selectors/standingsSelector';
 import { setConstructorStandings, setDriverStandings } from 'slices/standingsSlice';
+import { ConstructorStanding, DriverStanding } from 'types/standings';
 
 // for recharts v2.1 and above
-import CardContainer from '@/components/Card';
-import ConstructorStandings from '@/components/ConstructorsStandingsTable';
-import DriverStandings from '@/components/DriverStandings';
-import { cn } from '@/lib/utils';
+import { Card } from 'components/CardContainer';
+import ConstructorStandings from 'components/ConstructorsStandingsTable';
+import DriverStandings from 'components/DriverStandings';
+import { cn } from 'lib/utils';
 import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 export function ConstructorChart({
@@ -217,7 +217,7 @@ const Standings: React.FC = (): JSX.Element => {
             <div className="flex flex-col md:flex-row gap-0 w-[99vw]">
                 {/* LEFT SIDE */}
                 <div className="p-4 w-[100%] md:w-[45%] h-[100vh] flex flex-col gap-4">
-                    <CardContainer
+                    <Card
                         className={cn('overflow-hidden dark:bg-zinc-800 bg-zinc-300 h-[100vh] md:h-[150vh] w-full')}
                         title="Drivers"
                     >
@@ -225,19 +225,19 @@ const Standings: React.FC = (): JSX.Element => {
                             data={removeDuplicates(colorDrivers, 'driver_id')}
                             className={cn('w-full h-[93.5vh] md:h-[85vh] mb-4 overflow-hidden')}
                         />
-                    </CardContainer>
+                    </Card>
                 </div>
 
                 {/* RIGHT SIDE */}
 
                 <div className="p-4 w-[100%] md:w-[45%] flex flex-col gap-4 h-[150vh]">
-                    <CardContainer
+                    <Card
                         className={cn('overflow-hidden dark:bg-zinc-800 bg-zinc-300 w-full h-[40vh] md:h-[24vh]')}
                         title="Drivers Standings"
                     >
                         <DriverStandings year={selectedYear} />
-                    </CardContainer>
-                    <CardContainer
+                    </Card>
+                    <Card
                         className={cn('overflow-hidden dark:bg-zinc-800 bg-zinc-300 w-full pb-0 h-[120vh]')}
                         title="Constructors"
                     >
@@ -245,15 +245,15 @@ const Standings: React.FC = (): JSX.Element => {
                             data={colorConstructors}
                             className={cn('w-full h-[180%] mb-4 overflow-hidden')}
                         />
-                    </CardContainer>
-                    <CardContainer
+                    </Card>
+                    <Card
                         className={cn(
                             'overflow-hidden dark:bg-zinc-800 bg-zinc-300 h-[60vh] md:h-[33vh] w-full mb:p-[60px]',
                         )}
                         title="Constructors Standings"
                     >
                         <ConstructorStandings year={selectedYear} />
-                    </CardContainer>
+                    </Card>
                 </div>
             </div>
         </PageContainer>
@@ -261,8 +261,8 @@ const Standings: React.FC = (): JSX.Element => {
 };
 
 export default Standings;
-// import { cn } from '@/lib/utils';
-// import { ConstructorStanding, DriverStanding } from '@/types/standings';
+// import { cn } from 'lib/utils';
+// import { ConstructorStanding, DriverStanding } from 'types/standings';
 // import { RootState, useAppDispatch, useAppSelector } from 'app/store';
 // import PageContainer from 'components/PageContainer';
 // import { ChartConfig, ChartContainer, ChartTooltip, ChartTooltipContent } from 'components/ui/chart';
@@ -273,9 +273,9 @@ export default Standings;
 // import { setConstructorStandings, setDriverStandings } from 'slices/standingsSlice';
 
 // // for recharts v2.1 and above
-// import CardContainer from '@/components/CardContainer';
-// import ConstructorStandings from '@/components/ConstructorsStandings';
-// import DriverStandings from '@/components/DriverStandings';
+// import CardContainer from 'components/CardContainer';
+// import ConstructorStandings from 'components/ConstructorsStandings';
+// import DriverStandings from 'components/DriverStandings';
 // import { NameType, ValueType } from 'recharts/types/component/DefaultTooltipContent';
 
 // export function ConstructorChart({

@@ -8,6 +8,7 @@ export interface ConstructorStanding {
     position_display_order: number;
     position_number: number;
     position_text: number;
+    short_name: string;
     year: number;
 }
 

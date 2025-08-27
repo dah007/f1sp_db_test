@@ -22,6 +22,7 @@
             "constants/*": ["./src/constants/*"],
             "features/*": ["./src/features/*"],
             "hooks/*": ["./src/hooks/*"],
+            "lib/*": ["./src/lib/*"],
             "routes/*": ["./src/routes/*"],
             "selectors/*": ["./src/selectors/*"],
             "services/*": ["./src/services/*"],

@@ -13,17 +13,22 @@ import { setDriversOfTheDay } from 'slices/driversSlice';
 import { setLastRaceResults, setRaceWGP } from 'slices/racesSlice';
 import { setError, setLoading } from 'slices/systemWideSlice';
 
-import { cn } from '@/lib/utils';
+import { cn } from 'lib/utils';
 
-import Card from '@/components/Card';
+// import LastRaceResultsHero from '@/components/Race/LastRaceResultsHero';
+
+import HomeHeroRow from '@/components/HomeHeroRow';
+import { YEAR } from '@/constants/constants';
+import { useGetConstructorStandingsQuery, useGetDriverStandingsQuery } from '@/features/standingsApi';
+import { setConstructorStandings, setDriverStandings } from '@/slices/standingsSlice';
+import { ConstructorStanding, DriverStanding } from '@/types/standings';
 import ConstructorStandings from 'components/ConstructorsStandingsTable';
 import DriverStandingsChart from 'components/DriverStandingsChart';
 import ErrorDialog from 'components/ErrorDialog';
 import LastRaceResultsPod from 'components/LastRaceResultsPod';
-import NextRaceBanner from 'components/NextRaceBanner';
 import TotalWinsPerYear from 'components/TotalWinsPerYear';
 import { Alert, AlertDescription, AlertTitle } from 'components/ui/alert';
-import { CardContent, CardFooter, CardHeader, CardTitle } from 'components/ui/card';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from 'components/ui/card';
 import { InfoIcon } from 'lucide-react';
 
 interface MessageFromURLResult {
@@ -49,6 +54,15 @@ const Home: React.FC = () => {
     const raceNext = useAppSelector((state: RootState) => state.races.raceNext) as RaceResultProps | null;
     const raceWGP = useAppSelector((state: RootState) => state.races.raceWGP) as Partial<RaceProps> | null;
     const systemError = useAppSelector((state: RootState) => selectError(state));
+
+    const { data: constructorsData } = useGetConstructorStandingsQuery(YEAR) as {
+        data: ConstructorStanding[] | undefined;
+    };
+
+    useEffect(() => {
+        if (!constructorsData) return;
+        dispatch(setConstructorStandings(constructorsData));
+    }, [dispatch, constructorsData]);
 
     const {
         data: dataDriversOfTheDay,
@@ -111,6 +125,27 @@ const Home: React.FC = () => {
         dispatch(setLoading(false));
     }, [dataResults, dataIsError, dataIsLoading, dispatch]);
 
+    const {
+        data: driverStandingsData,
+        isError: driverStandingsIsError,
+        isLoading: driverStandingsIsLoading,
+    } = useGetDriverStandingsQuery(YEAR) as {
+        data: DriverStanding[] | undefined;
+        isLoading?: boolean;
+        isError: boolean;
+    };
+
+    useEffect(() => {
+        if (driverStandingsIsLoading) dispatch(setLoading(true));
+
+        if (driverStandingsIsError) {
+            dispatch(setError(true));
+            return;
+        }
+        if (!driverStandingsData) return;
+        dispatch(setDriverStandings(driverStandingsData));
+    }, [driverStandingsData, driverStandingsIsError, driverStandingsIsLoading, dispatch]);
+
     const widthsNHeights = 'h-[25vh] sm:h-[15vh] md:h-[35vh]';
 
     const { success: voteSuccessful, message: voteMessage } = getMessageFromURL();
@@ -160,19 +195,16 @@ const Home: React.FC = () => {
                 </MessageBox>
             )}
 
-            {/* MOBILE BANNER */}
-            <div className="lg:hidden xl:hidden text-center border-1">
-                <NextRaceBanner />
-            </div>
-
             {systemError && <ErrorDialog />}
+
+            <HomeHeroRow />
 
             <div className="flex flex-col justify-center items-center mr-2">
                 <div
                     className="
                 lg:grid
-                lg:gzrid-cols-3
-                lg:grid-rows-3
+                lg:grid-cols-2
+                lg:grid-rows-2
 
                 md:flex
                 md:flex-col
@@ -210,11 +242,7 @@ const Home: React.FC = () => {
                     </div>
 
                     <div className={cn('col-start-2 row-start-1', widthsNHeights)}>
-                        <Card
-                            className={cn('overflow-hidden', widthsNHeights)}
-                            title={`Driver Standings`}
-                            childrenClassName="flex flex-col items-end h-full justify-end w-full"
-                        >
+                        <Card className={cn('overflow-hidden', widthsNHeights)} title={`Driver Standings`}>
                             <DriverStandingsChart />
 
                             <CardFooter className="w-full text-left">

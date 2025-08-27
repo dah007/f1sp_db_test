@@ -53,6 +53,7 @@ export default defineConfig({
             constants: '/src/constants',
             features: '/src/features',
             hooks: '/src/hooks',
+            lib: '/src/lib',
             routes: '/src/routes',
             selectors: '/src/selectors',
             services: 'services',

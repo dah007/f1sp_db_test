@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils';
 import { Card } from 'components/ui/card';
+import { cn } from 'lib/utils';
 // import { useNavigate } from 'react-router-dom';
 import LF from '../components/LoginForm';
 
@@ -15,7 +15,9 @@ const LoginForm = () => {
                 <LF />
             </Card>
 
-            <a href="account/new" className="mt-4 text-center text-blue-500 hover:underline">New User? Create Account</a>
+            <a href="account/new" className="mt-4 text-center text-blue-500 hover:underline">
+                New User? Create Account
+            </a>
         </div>
     );
 };

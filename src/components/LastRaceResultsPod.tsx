@@ -1,5 +1,5 @@
-import { cn } from '@/lib/utils';
 import { RootState, useAppSelector } from 'app/store';
+import { cn } from 'lib/utils';
 import { JSX } from 'react';
 import type { RaceResultProps } from 'types/races';
 import CardSkeleton from './CardSkeleton';
