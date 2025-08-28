@@ -21,7 +21,7 @@ const HomeHeroRow = () => {
     const constructorsStanding: ConstructorStanding[] = useAppSelector(
         (state: RootState) => state.standings.constructors || [],
     );
-    const driverStandings = useAppSelector((state: RootState) => state.standings.drivers);
+    const driverStandings = useAppSelector((state: RootState) => state.standings.drivers || []);
 
     const raceNext: RaceResultProps | null = useAppSelector(
         (state: RootState) => state.races.raceNext,
@@ -31,11 +31,12 @@ const HomeHeroRow = () => {
         (state: RootState) => state.races.raceWGP,
     ) as Partial<RaceProps> | null;
 
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     const driverOfTheDay: DriverOfTheDayData[] =
         useAppSelector((state: RootState) => state.drivers.driversOfTheDay) || [];
 
-    const DriverOfTheDay = (): JSX.Element => {
-        if (driverOfTheDay && driverOfTheDay.length > 0) {
+    const driverOfTheDayElement = useMemo((): JSX.Element => {
+        if (driverOfTheDay && driverOfTheDay.length > 0 && driverOfTheDay[0]?.name) {
             return (
                 <>
                     <span className="font-bold">Driver of the day:</span> {driverOfTheDay[0].name}
@@ -44,31 +45,26 @@ const HomeHeroRow = () => {
         }
 
         return <Skeleton className="h-[20px] w-[100px] rounded-full bg-white" />;
-    };
-    const constructorLeader = useMemo((): ConstructorStanding | null => {
-        // sort of constructors standings return the record with the highest points
-        if (constructorsStanding && constructorsStanding.length > 0) {
-            const leader: ConstructorStanding = constructorsStanding.reduce(
-                (prev: ConstructorStanding, current: ConstructorStanding) => {
-                    return prev.points > current.points ? prev : current;
-                },
-            );
-            return leader;
-        }
+    }, [driverOfTheDay]);
 
-        return null;
+    const constructorLeader = useMemo((): ConstructorStanding | null => {
+        if (!constructorsStanding?.length) return null;
+
+        const leader: ConstructorStanding = constructorsStanding.reduce(
+            (prev: ConstructorStanding, current: ConstructorStanding) => {
+                return (prev?.points ?? 0) > (current?.points ?? 0) ? prev : current;
+            },
+        );
+        return leader;
     }, [constructorsStanding]);
 
     const driverLeader = useMemo((): DriverStanding | null => {
-        // sort of driver standings return the record with the highest points
-        if (driverStandings && driverStandings.length > 0) {
-            const leader: DriverStanding = driverStandings.reduce((prev: DriverStanding, current: DriverStanding) => {
-                return prev.points > current.points ? prev : current;
-            });
-            return leader;
-        }
+        if (!driverStandings?.length) return null;
 
-        return null;
+        const leader: DriverStanding = driverStandings.reduce((prev: DriverStanding, current: DriverStanding) => {
+            return (prev?.points ?? 0) > (current?.points ?? 0) ? prev : current;
+        });
+        return leader;
     }, [driverStandings]);
 
     return (
@@ -86,8 +82,10 @@ const HomeHeroRow = () => {
         >
             <Card className="w-full">
                 <CardHeader>
-                    <CardTitle>Next: {raceNext?.circuit_name}</CardTitle>
-                    <CardDescription>{formatDate(raceNext?.date_time as unknown as string)}</CardDescription>
+                    <CardTitle>Next: {raceNext?.circuit_name ?? 'TBD'}</CardTitle>
+                    <CardDescription>
+                        {raceNext?.date_time ? formatDate(raceNext.date_time as unknown as string) : 'Date TBD'}
+                    </CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="flex flex-nowrap flex-col text-right">
@@ -116,11 +114,9 @@ const HomeHeroRow = () => {
                     <div className="flex flex-nowrap flex-col text-right">
                         <div>
                             <span className="font-bold">Winner: </span>
-                            {raceResults.length > 0 ? raceResults[0].driver_name : 'N/A'}
+                            {raceResults?.length > 0 ? raceResults[0]?.driver_name ?? 'N/A' : 'N/A'}
                         </div>
-                        <div>
-                            <DriverOfTheDay />
-                        </div>
+                        <div>{driverOfTheDayElement}</div>
                     </div>
                 </CardContent>
             </Card>
@@ -134,11 +130,11 @@ const HomeHeroRow = () => {
                     <div className="flex flex-nowrap flex-col text-right">
                         <div>
                             <span className="font-bold">Name: </span>
-                            {driverLeader?.name || 'N/A'}
+                            {driverLeader?.name ?? 'N/A'}
                         </div>
                         <div>
                             <span className="font-bold">Points: </span>
-                            {driverLeader?.points || 0}
+                            {driverLeader?.points ?? 0}
                         </div>
                     </div>
                 </CardContent>
@@ -153,11 +149,11 @@ const HomeHeroRow = () => {
                     <div className="flex flex-nowrap flex-col text-right">
                         <div>
                             <span className="font-bold">Team: </span>
-                            {constructorLeader?.short_name || 'N/A'}
+                            {constructorLeader?.short_name ?? 'N/A'}
                         </div>
                         <div>
                             <span className="font-bold">Points: </span>
-                            {constructorLeader?.points || 0}
+                            {constructorLeader?.points ?? 0}
                         </div>
                     </div>
                 </CardContent>
