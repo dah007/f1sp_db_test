@@ -17,7 +17,7 @@ function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
-    return <CardComponentDescription className={cn('text-right', className)} {...props} />;
+    return <CardComponentDescription className={cn('', className)} {...props} />;
 }
 
 function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {

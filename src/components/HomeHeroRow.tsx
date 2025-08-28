@@ -82,12 +82,12 @@ const HomeHeroRow = () => {
                 sm:grid-cols-1
                 sm:grid-rows-4
                 grid-col-1 
-                grid-rows-4 gap-4 pb-4"
+                grid-rows-4 gap-4 pb-4 sm:pb-0 p-0 sm:p-6"
         >
             <Card className="w-full">
                 <CardHeader>
                     <CardTitle>Next: {raceNext?.circuit_name}</CardTitle>
-                    <CardDescription>Date: {formatDate(raceNext?.date_time as unknown as string)}</CardDescription>
+                    <CardDescription>{formatDate(raceNext?.date_time as unknown as string)}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="flex flex-nowrap flex-col text-right">
@@ -110,7 +110,7 @@ const HomeHeroRow = () => {
             <Card className="w-full">
                 <CardHeader>
                     <CardTitle>Last Race</CardTitle>
-                    <CardDescription>{raceWGP ? raceWGP.official_name : 'N/A'}</CardDescription>
+                    <CardDescription>{raceWGP ? raceWGP.short_name : 'N/A'}</CardDescription>
                 </CardHeader>
                 <CardContent>
                     <div className="flex flex-nowrap flex-col text-right">
