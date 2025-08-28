@@ -55,7 +55,6 @@ const Home: React.FC = () => {
     const raceWGP = useAppSelector((state: RootState) => state.races.raceWGP) as Partial<RaceProps> | null;
     const systemError = useAppSelector((state: RootState) => selectError(state));
 
-    console.log('raceWGP', raceWGP);
 
     const { data: constructorsData } = useGetConstructorStandingsQuery(YEAR) as {
         data: ConstructorStanding[] | undefined;
