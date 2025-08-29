@@ -1,6 +1,6 @@
-import { JSX } from 'react/jsx-runtime';
 import { Column } from '@tanstack/react-table';
-import { cn } from '@/lib/utils';
+import { cn } from 'lib/utils';
+import { JSX } from 'react/jsx-runtime';
 
 import { ArrowUpDown } from 'lucide-react';
 import { Button } from './ui/button';

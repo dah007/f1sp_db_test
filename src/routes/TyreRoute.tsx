@@ -1,11 +1,11 @@
 import { RootState, useAppDispatch, useAppSelector } from '@/app/store';
 import DataTable from '@/components/DataTable';
 import { useGetTyresManufacturersQuery } from '@/features/constructorsApi';
-import { cn } from '@/lib/utils';
 import { setTyresManufacturers } from '@/slices/constructorsSlice';
 import { setError, setLoading } from '@/slices/systemWideSlice';
 import { ManufacturerProps } from '@/types/constructors';
 import { ColumnDef } from '@tanstack/react-table';
+import { cn } from 'lib/utils';
 
 import { useEffect } from 'react';
 

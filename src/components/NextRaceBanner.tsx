@@ -15,17 +15,12 @@ const NextRaceBanner: React.FC = (): JSX.Element => {
     return (
         <div
             className="
-            flex
-            justify-end
-            gap-2
-            align-middle
             raceNext
             krona-one-regular
             xl:text-2xl
             lg:text-2xl
             text-xl
             pb-2
-            pl-8
             pt-2
             w-full
             italic

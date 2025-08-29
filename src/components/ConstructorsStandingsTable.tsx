@@ -1,7 +1,7 @@
-import { cn } from '@/lib/utils';
 import { RootState, useAppDispatch, useAppSelector } from 'app/store';
 import { YEAR } from 'constants/constants';
 import { useGetConstructorStandingsQuery } from 'features/standingsApi';
+import { cn } from 'lib/utils';
 import { JSX, useEffect } from 'react';
 import { setConstructorStandings } from 'slices/standingsSlice';
 import { setError, setLoading } from 'slices/systemWideSlice';

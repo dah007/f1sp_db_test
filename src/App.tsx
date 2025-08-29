@@ -76,13 +76,23 @@ const App = () => {
 
                 <Header />
 
-                <main
+                {/* <main
                     className="
                     xl:pl-20 xl:pr-20
                     lg:pl-10 lg:pr-10
                     md:pl-10 md:pr-10
                     sm:pl-4 sm:pr-4
                     pl-1 pr-1 w-[100vw]"
+                > */}
+                <main
+                    className="
+                    w-full
+                    md:w-[80%] 
+                    lg:w-[70%]
+                    xl:w-[60%]
+                    max-w-screen-xl 
+                    mx-auto
+                "
                 >
                     <Outlet />
 

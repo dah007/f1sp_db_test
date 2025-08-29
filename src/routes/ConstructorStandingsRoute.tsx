@@ -1,15 +1,15 @@
 import { RootState, useAppSelector } from '@/app/store';
-import Card from '@/components/Card';
+import { Card } from '@/components/CardContainer';
 import TeamPerformanceRadar from '@/components/charts/TeamPerformanceRadar';
 import ConstructorStandingsTable from '@/components/ConstructorsStandingsTable';
 import PageContainer from '@/components/PageContainer';
 import { YEAR } from '@/constants/constants';
 import { useGetConstructorStandingsQuery } from '@/features/standingsApi';
-import { cn } from '@/lib/utils';
 import { selectConstructorStandings } from '@/selectors/standingsSelector';
 import { setConstructorStandings } from '@/slices/standingsSlice';
 import { ConstructorStanding } from '@/types/standings';
 import { removeDuplicates } from '@/utils';
+import { cn } from 'lib/utils';
 import { JSX, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 

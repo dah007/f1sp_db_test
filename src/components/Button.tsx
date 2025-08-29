@@ -44,7 +44,7 @@ const Button: React.FC<ButtonProps> = ({
     return (
         <BButton
             variant={variant as NonNullable<VariantProps<typeof buttonVariants>['variant']>}
-            className={`flex items-center ${className}`}
+            className={`bg-background flex items-center ${className}`}
             {...props}
         >
             {children}

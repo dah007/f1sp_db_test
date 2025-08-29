@@ -1,8 +1,8 @@
-import { useState } from 'react';
-import { cn } from '@/lib/utils';
-import { Card, CardContent, CardHeader } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
-import { TrendingUp, TrendingDown, Trophy, Flag } from 'lucide-react';
+import { Card, CardContent, CardHeader } from '@/components/ui/card';
+import { cn } from 'lib/utils';
+import { Flag, TrendingDown, TrendingUp, Trophy } from 'lucide-react';
+import { useState } from 'react';
 
 interface DriverData {
     id: string;
@@ -31,7 +31,7 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
     driver,
     onClick,
     showDetailedStats = false,
-    size = 'md'
+    size = 'md',
 }) => {
     const [isHovered, setIsHovered] = useState(false);
 
@@ -51,13 +51,13 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
     const sizeClasses = {
         sm: 'h-32',
         md: 'h-40',
-        lg: 'h-48'
+        lg: 'h-48',
     };
 
     const numberSize = {
         sm: 'text-2xl',
         md: 'text-3xl',
-        lg: 'text-4xl'
+        lg: 'text-4xl',
     };
 
     const trend = getFormTrend();
@@ -68,33 +68,31 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
             className={cn(
                 'relative overflow-hidden cursor-pointer transition-all duration-300 border-2',
                 sizeClasses[size],
-                isHovered 
-                    ? 'scale-105 shadow-2xl border-white/30' 
-                    : 'shadow-lg border-zinc-700/50',
-                'group'
+                isHovered ? 'scale-105 shadow-2xl border-white/30' : 'shadow-lg border-zinc-700/50',
+                'group',
             )}
             style={{
-                background: isHovered 
+                background: isHovered
                     ? `linear-gradient(135deg, ${driver.teamColor}20, ${driver.teamColor}10, transparent)`
-                    : 'linear-gradient(135deg, rgba(39, 39, 42, 0.8), rgba(24, 24, 27, 0.9))'
+                    : 'linear-gradient(135deg, rgba(39, 39, 42, 0.8), rgba(24, 24, 27, 0.9))',
             }}
             onMouseEnter={() => setIsHovered(true)}
             onMouseLeave={() => setIsHovered(false)}
             onClick={() => onClick?.(driver)}
         >
             {/* Animated background gradient */}
-            <div 
+            <div
                 className="absolute inset-0 opacity-0 group-hover:opacity-20 transition-opacity duration-500"
                 style={{
-                    background: `radial-gradient(circle at 30% 30%, ${driver.teamColor}40, transparent 60%)`
+                    background: `radial-gradient(circle at 30% 30%, ${driver.teamColor}40, transparent 60%)`,
                 }}
             />
 
             {/* Racing number background */}
-            <div 
+            <div
                 className={cn(
                     'absolute top-2 right-2 font-bold opacity-10 group-hover:opacity-20 transition-opacity',
-                    numberSize[size]
+                    numberSize[size],
                 )}
                 style={{ color: driver.teamColor }}
             >
@@ -112,16 +110,16 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
                 <div className="flex items-start justify-between">
                     <div className="flex items-center space-x-3">
                         {/* Driver avatar or number */}
-                        <div 
+                        <div
                             className="w-12 h-12 rounded-full flex items-center justify-center text-white font-bold border-2 shadow-lg"
-                            style={{ 
+                            style={{
                                 backgroundColor: driver.teamColor,
-                                borderColor: isHovered ? 'white' : driver.teamColor 
+                                borderColor: isHovered ? 'white' : driver.teamColor,
                             }}
                         >
                             {driver.avatar ? (
-                                <img 
-                                    src={driver.avatar} 
+                                <img
+                                    src={driver.avatar}
                                     alt={driver.name}
                                     className="w-full h-full rounded-full object-cover"
                                 />
@@ -139,11 +137,11 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
                     </div>
 
                     {/* Position badge */}
-                    <Badge 
+                    <Badge
                         variant="secondary"
                         className={cn(
                             'text-white font-bold px-2 py-1',
-                            driver.position <= 3 ? 'bg-yellow-600' : 'bg-zinc-600'
+                            driver.position <= 3 ? 'bg-yellow-600' : 'bg-zinc-600',
                         )}
                     >
                         P{driver.position}
@@ -174,20 +172,21 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
                         <Flag className="w-4 h-4 text-zinc-400" />
                         <span className="text-xs text-zinc-400">{driver.nationality}</span>
                     </div>
-                    
+
                     {/* Recent form */}
                     <div className="flex items-center space-x-1">
-                        {TrendIcon && (
-                            <TrendIcon className={cn('w-4 h-4', trend.color)} />
-                        )}
+                        {TrendIcon && <TrendIcon className={cn('w-4 h-4', trend.color)} />}
                         <div className="flex space-x-1">
                             {driver.form.slice(-3).map((position, index) => (
                                 <div
                                     key={index}
                                     className={cn(
                                         'w-2 h-2 rounded-full',
-                                        position <= 3 ? 'bg-green-500' :
-                                        position <= 10 ? 'bg-yellow-500' : 'bg-red-500'
+                                        position <= 3
+                                            ? 'bg-green-500'
+                                            : position <= 10
+                                            ? 'bg-yellow-500'
+                                            : 'bg-red-500',
                                     )}
                                 />
                             ))}
@@ -199,7 +198,9 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
                 {showDetailedStats && (
                     <div className="mt-3 pt-3 border-t border-zinc-700">
                         <div className="flex justify-between text-xs text-zinc-400">
-                            <span>Avg Position: {(driver.form.reduce((a, b) => a + b, 0) / driver.form.length).toFixed(1)}</span>
+                            <span>
+                                Avg Position: {(driver.form.reduce((a, b) => a + b, 0) / driver.form.length).toFixed(1)}
+                            </span>
                             <span className={trend.color}>{trend.label}</span>
                         </div>
                     </div>
@@ -207,11 +208,11 @@ const EnhancedDriverCard: React.FC<EnhancedDriverCardProps> = ({
             </CardContent>
 
             {/* Team color accent stripe */}
-            <div 
+            <div
                 className="absolute bottom-0 left-0 w-full h-1 transition-all duration-300"
-                style={{ 
+                style={{
                     backgroundColor: driver.teamColor,
-                    boxShadow: isHovered ? `0 0 10px ${driver.teamColor}50` : 'none'
+                    boxShadow: isHovered ? `0 0 10px ${driver.teamColor}50` : 'none',
                 }}
             />
 
@@ -236,7 +237,7 @@ export const DriverGrid: React.FC = () => {
             podiums: 21,
             teamColor: '#3671C6',
             form: [1, 2, 1, 1, 3],
-            isChampion: true
+            isChampion: true,
         },
         {
             id: '2',
@@ -249,7 +250,7 @@ export const DriverGrid: React.FC = () => {
             wins: 3,
             podiums: 8,
             teamColor: '#FF8000',
-            form: [2, 1, 4, 2, 1]
+            form: [2, 1, 4, 2, 1],
         },
         {
             id: '3',
@@ -262,8 +263,8 @@ export const DriverGrid: React.FC = () => {
             wins: 2,
             podiums: 7,
             teamColor: '#E8002D',
-            form: [3, 4, 2, 3, 5]
-        }
+            form: [3, 4, 2, 3, 5],
+        },
     ];
 
     const handleDriverClick = (driver: DriverData) => {

@@ -13,10 +13,10 @@ import {
     useReactTable,
 } from '@tanstack/react-table';
 
-import { cn } from '@/lib/utils';
 import { Input } from 'components/ui/input';
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from 'components/ui/table';
 import { BUTTON_CLASSES } from 'constants/constants';
+import { cn } from 'lib/utils';
 import { DataTableProps, ExtendedColumnDef } from 'types/dataTable';
 import { ScrollArea, ScrollBar } from './ui/scroll-area';
 

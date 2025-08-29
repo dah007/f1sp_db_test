@@ -8,14 +8,13 @@ import {
     NavigationMenuList,
     NavigationMenuTrigger,
 } from '@/components/ui/navigation-menu';
-import { cn } from '@/lib/utils';
+import { cn } from 'lib/utils';
 import React from 'react';
 import { constructorMenuItems, driverMenuItems, raceMenuItems, seasonsMenuItems } from './Header';
-import NextRaceBanner from './NextRaceBanner';
 
 const menuButton =
-    'text-zinc-800 dark:text-zinc-300 hover:text-zinc-500 dark:hover:text-zinc-300 font-extrabold text-xl';
-const menuItemBG = 'bg-zinc-300 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-md shadow-md';
+    'text-forground dark:text-zinc-300 hover:text-zinc-500 dark:hover:text-zinc-300 font-extrabold text-xl border-0 bg-transparent';
+const menuItemBG = 'bg-zinc-300 dark:bg-zinc-800 border border-zinc-600 dark:border-zinc-700 rounded-md shadow-md';
 
 export function DesktopNavigation() {
     return (
@@ -92,8 +91,6 @@ export function DesktopNavigation() {
                     </NavigationMenuItem>
                 </NavigationMenuList>
             </NavigationMenu>
-
-            <NextRaceBanner />
         </div>
     );
 }

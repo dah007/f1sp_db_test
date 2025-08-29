@@ -1,7 +1,7 @@
-import React, { forwardRef, ButtonHTMLAttributes } from 'react';
-import { Button } from './ui/button';
-import { cn } from '@/lib/utils';
 import { BUTTON_CLASSES } from '@/constants/constants';
+import { cn } from 'lib/utils';
+import React, { ButtonHTMLAttributes, forwardRef } from 'react';
+import { Button } from './ui/button';
 
 interface ButtonStyledProps extends ButtonHTMLAttributes<HTMLButtonElement> {
     children: React.ReactNode;
