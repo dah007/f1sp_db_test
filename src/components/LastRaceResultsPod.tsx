@@ -61,7 +61,7 @@ const LastRaceResultsPod: React.FC = (): JSX.Element => {
                 <Table className="w-full">
                     <TableHeader className="sticky top-0 z-10">
                         <TableRow>
-                            <TableHead className="w-text-right">Pos</TableHead>
+                            <TableHead className="w-4 text-right">Pos</TableHead>
                             <TableHead>Driver</TableHead>
                             <TableHead className="text-right">Gap</TableHead>
                             <TableHead className="w-4 text-right">Points</TableHead>
