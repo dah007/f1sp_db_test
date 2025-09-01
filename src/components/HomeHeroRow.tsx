@@ -80,7 +80,7 @@ const HomeHeroRow = () => {
                 grid-col-1 
                 grid-rows-4 gap-4 pb-4 sm:pb-0 p-0 sm:p-6"
         >
-            <Card className="w-full">
+            <Card className="w-full overflow-hidden">
                 <CardHeader>
                     <CardTitle>Next: {raceNext?.circuit_name ?? 'TBD'}</CardTitle>
                     <CardDescription>
@@ -105,7 +105,7 @@ const HomeHeroRow = () => {
                 </CardContent>
             </Card>
 
-            <Card className="w-full">
+            <Card className="w-full overflow-hidden">
                 <CardHeader>
                     <CardTitle>Last Race</CardTitle>
                     <CardDescription>{raceWGP ? raceWGP.short_name : 'N/A'}</CardDescription>
@@ -121,9 +121,9 @@ const HomeHeroRow = () => {
                 </CardContent>
             </Card>
 
-            <Card className="w-full">
+            <Card className="w-full overflow-hidden">
                 <CardHeader>
-                    <CardTitle>Championship Leader</CardTitle>
+                    <CardTitle className="overflow-wrap">Championship Leader</CardTitle>
                     <CardDescription>As of {formatDate(new Date())}</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -140,7 +140,7 @@ const HomeHeroRow = () => {
                 </CardContent>
             </Card>
 
-            <Card className="w-full">
+            <Card className="w-full overflow-hidden">
                 <CardHeader>
                     <CardTitle>Constructor Leader</CardTitle>
                     <CardDescription>As of {formatDate(new Date())}</CardDescription>
