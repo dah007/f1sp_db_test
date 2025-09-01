@@ -190,10 +190,10 @@ const Drivers: React.FC = (): JSX.Element => {
                 size: 40,
                 maxWidth: 40,
                 header: ({ column }) => (
-                    <div type="button" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
                         Last Name
                         <ArrowUpDown className="w-4 h-4 ml-2" />
-                    </div>
+                    </Button>
                 ),
             },
             {
