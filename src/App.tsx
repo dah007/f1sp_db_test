@@ -65,7 +65,7 @@ const App = () => {
                             md:border-orange-600 
                             lg:border-blue-300 
                             xl:border-green-300 
-                            border-rose-700 
+                            border-slate-700 
                             absolute
                             top-0
                             left-0
