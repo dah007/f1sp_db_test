@@ -137,7 +137,7 @@ const Drivers: React.FC = (): JSX.Element => {
                 cell: ({ row }) => {
                     return (
                         <div className="min-w-8 w-8 max-w-8">
-                            {Flag({ nameAsId: row.getValue('nationality_country_id'), size: 24 })}
+                            <Flag nameAsId={row.getValue('nationality_country_id')} size={24} />
                         </div>
                     );
                 },
@@ -190,10 +190,10 @@ const Drivers: React.FC = (): JSX.Element => {
                 size: 40,
                 maxWidth: 40,
                 header: ({ column }) => (
-                    <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
+                    <div type="button" onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}>
                         Last Name
                         <ArrowUpDown className="w-4 h-4 ml-2" />
-                    </Button>
+                    </div>
                 ),
             },
             {

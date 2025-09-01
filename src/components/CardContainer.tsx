@@ -9,7 +9,12 @@ import {
 } from './ui/card';
 
 function Card({ className, ...props }: React.ComponentProps<'div'>) {
-    return <CardComponent className={cn('w-1/4 mb-4 p-2', className)} {...props} />;
+    return (
+        <CardComponent
+            className={cn('overflow-y-scroll overflow-x-hidden p-2 m-0 custom-scrollbar', className)}
+            {...props}
+        />
+    );
 }
 
 function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
@@ -30,7 +35,14 @@ function CardHeader({ className, ...props }: React.ComponentProps<'div'>) {
 
 function CardTitle({ className, ...props }: React.ComponentProps<'div'>) {
     return (
-        <CardComponentTitle className={cn('pl-0 ml-0 text-left font-bold krona-one-regular', className)} {...props} />
+        <CardComponentTitle
+            className={cn(
+                'h-8 bg-zinc-900 pl-4',
+                'w-full overflow-hidden text-ellipsis whitespace-nowrap block ml-0 text-left font-bold krona-one-regular',
+                className,
+            )}
+            {...props}
+        />
     );
 }
 
