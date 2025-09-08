@@ -1,6 +1,9 @@
+import { useAppSelector } from '@/app/store';
+import { RaceNextProps } from '@/types/races';
 import { LucideCoffee } from 'lucide-react';
+import { useCallback, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { constructorMenuItems, driverMenuItems, MenuButton, raceMenuItems } from './Header';
+import { constructorMenuItems, driverMenuItems, MenuButton, raceMenuItems as rawRaceMenuItems } from './Header';
 import dah007Logo from '/assets/dah007-icon-logo.svg';
 
 const Footer = () => {
@@ -8,6 +11,9 @@ const Footer = () => {
     const handleNavigationMobile = (path: string) => {
         navigate(path);
     };
+    const raceNextRaw = useAppSelector((state) => state.races.raceNext) as RaceNextProps;
+    const raceNext = useMemo(() => raceNextRaw, [raceNextRaw]);
+    const raceMenuItems = useCallback((raceNext: RaceNextProps) => rawRaceMenuItems(raceNext), []);
 
     return (
         <footer className="bg-zinc-300 dark:bg-zinc-900 border-t-2 border-zinc-700 mt-16">
@@ -79,7 +85,7 @@ const Footer = () => {
                             </li>
 
                             <ul className="ml-4">
-                                {raceMenuItems.map((component) => (
+                                {raceMenuItems(raceNext).map((component) => (
                                     <li key={component.title}>
                                         <MenuButton
                                             label={component.title}

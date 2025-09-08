@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@/app/store';
-import { FULL_ROW_HEIGHT, YEAR } from '@/constants/constants';
+import { YEAR } from '@/constants/constants';
 import { useGetTotalWinsByYearQuery } from '@/features/driversApi';
 import { setError, setLoading } from '@/slices/systemWideSlice';
 import { TotalWinsByYear } from '@/types/drivers';
@@ -52,8 +52,8 @@ const TotalWinsPerYear: React.FC = ({ className }: { className?: string }): JSX.
     if (totalWinsLoading || !totalWinsData) return <CardSkeleton />;
 
     return (
-        <ScrollArea className={cn(FULL_ROW_HEIGHT, className, 'overflow-hidden border-t', 'mb-40')}>
-            <Table className="w-full mb-10">
+        <ScrollArea className={cn(className, 'overflow-hidden')}>
+            <Table className="w-full">
                 <TableHeader>
                     <TableRow>
                         <TableHead className="w-4 text-right">Pos</TableHead>
@@ -64,8 +64,8 @@ const TotalWinsPerYear: React.FC = ({ className }: { className?: string }): JSX.
                 <TableBody>
                     {totalWinsByYear?.map((driver: TotalWinsByYear, index: number) => (
                         <TableRow key={`${driver.id}-${index}`} className="h-8">
-                            <TableCell className="text-right">{index + 1}.</TableCell>
-                            <TableCell>{driver.name}</TableCell>
+                            <TableCell className="text-right">{index + 1}</TableCell>
+                            <TableCell className="text-left">{driver.name}</TableCell>
                             <TableCell className="text-right">{driver.total}</TableCell>
                         </TableRow>
                     ))}

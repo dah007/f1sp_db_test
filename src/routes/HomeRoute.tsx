@@ -1,35 +1,34 @@
 'use client';
 
+import { cn } from 'lib/utils';
 import { JSX, useEffect } from 'react';
 
 import { RootState, useAppDispatch, useAppSelector } from 'app/store';
 import type { DriverOfTheDayProps } from 'types/drivers';
 import type { RaceProps, RaceResultProps } from 'types/races';
+import type { ConstructorStanding, DriverStanding } from 'types/standings';
 
 import { useGetDriverOfTheDayQuery } from 'features/driversApi';
 import { useGetLastRaceResultsQuery, useGetRaceWithGPQuery } from 'features/raceApi';
+import { useGetConstructorStandingsQuery, useGetDriverStandingsQuery } from 'features/standingsApi';
 import { selectError } from 'selectors/systemWideSelector';
 import { setDriversOfTheDay } from 'slices/driversSlice';
 import { setLastRaceResults, setRaceWGP } from 'slices/racesSlice';
+import { setConstructorStandings, setDriverStandings } from 'slices/standingsSlice';
 import { setError, setLoading } from 'slices/systemWideSlice';
 
-import { cn } from 'lib/utils';
-
-// import LastRaceResultsHero from '@/components/Race/LastRaceResultsHero';
-
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from '@/components/CardContainer';
-import HomeHeroRow from '@/components/HomeHeroRow';
-import { YEAR } from '@/constants/constants';
-import { useGetConstructorStandingsQuery, useGetDriverStandingsQuery } from '@/features/standingsApi';
-import { setConstructorStandings, setDriverStandings } from '@/slices/standingsSlice';
-import { ConstructorStanding, DriverStanding } from '@/types/standings';
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from 'components/CardContainer';
 import ConstructorStandings from 'components/ConstructorsStandingsTable';
 import DriverStandingsChart from 'components/DriverStandingsChart';
 import ErrorDialog from 'components/ErrorDialog';
+import HomeHeroRow from 'components/HomeHeroRow';
 import LastRaceResultsPod from 'components/LastRaceResultsPod';
 import TotalWinsPerYear from 'components/TotalWinsPerYear';
 import { Alert, AlertDescription, AlertTitle } from 'components/ui/alert';
+
 import { InfoIcon } from 'lucide-react';
+
+import { YEAR } from 'constants/constants';
 
 interface MessageFromURLResult {
     success: string | null;
@@ -54,7 +53,6 @@ const Home: React.FC = () => {
     const raceNext = useAppSelector((state: RootState) => state.races.raceNext) as RaceResultProps | null;
     const raceWGP = useAppSelector((state: RootState) => state.races.raceWGP) as Partial<RaceProps> | null;
     const systemError = useAppSelector((state: RootState) => selectError(state));
-
 
     const { data: constructorsData } = useGetConstructorStandingsQuery(YEAR) as {
         data: ConstructorStanding[] | undefined;
@@ -147,9 +145,6 @@ const Home: React.FC = () => {
         dispatch(setDriverStandings(driverStandingsData));
     }, [driverStandingsData, driverStandingsIsError, driverStandingsIsLoading, dispatch]);
 
-    // const widthsNHeights = 'h-[25vh] sm:h-[15vh] md:h-[35vh]';
-    const widthsNHeights = 'h-[25vh] sm:h-[20vh] md:h-[30vh] w-full';
-
     const { success: voteSuccessful, message: voteMessage } = getMessageFromURL();
 
     /**
@@ -218,46 +213,66 @@ const Home: React.FC = () => {
                 flex-col
                 w-full"
                 >
-                    <div className={cn('col-start-1 row-start-1', widthsNHeights)}>
-                        <Card className={widthsNHeights}>
-                            <CardHeader>
-                                <CardTitle className="flex items-center justify-between">
-                                    {raceWGP ? raceWGP.official_name : 'N/A'}
-                                </CardTitle>
-                                <CardContent className={'px-0'}>
-                                    <LastRaceResultsPod />
-                                </CardContent>
-                            </CardHeader>
-                        </Card>
-                    </div>
+                    <Card
+                        className={cn('overflow-y-scroll overflow-x-hidden w-full p-0 m-0 h-[30vh] custom-scrollbar')}
+                    >
+                        <CardHeader className="sticky bg-zinc-900 top-0 left-0 z-20">
+                            <CardTitle className={cn('h-8 bg-zinc-900 pl-4')}>
+                                {raceWGP ? raceWGP.official_name : 'N/A'}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className={'z-10'}>
+                            <LastRaceResultsPod />
+                        </CardContent>
+                    </Card>
 
-                    <div className={cn('col-start-1', 'row-start-2', widthsNHeights)}>
-                        <Card className={widthsNHeights} title="Constructors Standings">
+                    <Card
+                        className={cn('overflow-y-scroll overflow-x-hidden w-full p-0 m-0 h-[30vh] custom-scrollbar')}
+                    >
+                        <CardHeader className="sticky bg-zinc-900 top-0 left-0 z-20">
+                            <CardTitle className={cn('h-8 bg-zinc-900 pl-4')}>
+                                {raceWGP ? raceWGP.official_name : 'N/A'}
+                            </CardTitle>
+                        </CardHeader>
+                        <CardContent className={'z-10'}>
                             <ConstructorStandings />
-                        </Card>
-                    </div>
+                        </CardContent>
+                    </Card>
 
-                    <div className={cn('col-start-1 md:col-start-2 row-start-2', widthsNHeights)}>
-                        <Card className={cn('overflow-hidden', widthsNHeights)} title="Total Wins this season">
+                    <Card
+                        className={cn(
+                            'overflow-y-scroll overflow-x-hidden w-full p-0 m-0 h-[30vh] custom-scrollbar col-2 row-2',
+                        )}
+                    >
+                        <CardHeader className="sticky bg-zinc-900 top-0 left-0">
+                            <CardTitle className={cn('h-8 bg-zinc-900 pl-4')}>Wins This Season</CardTitle>
+                        </CardHeader>
+                        <CardContent className={cn('z-10')}>
                             <TotalWinsPerYear />
-                        </Card>
-                    </div>
+                        </CardContent>
+                    </Card>
 
-                    <div className={cn('col-start-2 row-start-1', widthsNHeights)}>
-                        <Card className={cn('overflow-hidden', widthsNHeights)} title={`Driver Standings`}>
+                    <Card
+                        className={cn(
+                            'overflow-y-scroll overflow-x-hidden w-full p-0 m-0 h-[30vh] custom-scrollbar col-2 row-1',
+                        )}
+                    >
+                        <CardHeader className="sticky bg-zinc-900 top-0 left-0">
+                            <CardTitle className={cn('h-8 bg-zinc-900 pl-4')}>Driver Standings</CardTitle>
+                        </CardHeader>
+                        <CardContent className={cn('z-10 pl-4 pr-4')}>
                             <DriverStandingsChart />
-
-                            <CardFooter className="w-full text-left">
-                                <button
-                                    rel="link"
-                                    onClick={() => (location.href = '/standings')}
-                                    className="text-blue-500 hover:text-blue-700 cursor-pointer font-semibold text-sm"
-                                >
-                                    View Full Standings
-                                </button>
-                            </CardFooter>
-                        </Card>
-                    </div>
+                        </CardContent>
+                        <CardFooter className="w-full text-left pl-4">
+                            <button
+                                rel="link"
+                                onClick={() => (location.href = '/standings')}
+                                className="text-blue-500 hover:text-blue-700 cursor-pointer font-semibold text-sm"
+                            >
+                                View Full Standings
+                            </button>
+                        </CardFooter>
+                    </Card>
                 </div>
             </div>
         </>

@@ -137,7 +137,7 @@ const Drivers: React.FC = (): JSX.Element => {
                 cell: ({ row }) => {
                     return (
                         <div className="min-w-8 w-8 max-w-8">
-                            {Flag({ nameAsId: row.getValue('nationality_country_id'), size: 24 })}
+                            <Flag nameAsId={row.getValue('nationality_country_id')} size={24} />
                         </div>
                     );
                 },

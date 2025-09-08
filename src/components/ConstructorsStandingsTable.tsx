@@ -43,7 +43,6 @@ const ConstructorStandingsTable = ({ className, year = YEAR }: { className?: str
     if (constructorStandingsIsLoading || !constructorStandings) return <CardSkeleton />;
 
     return (
-        // <ScrollArea className={cn('lg:h-[28vh] md:h-[28vh] h-[20vh]', 'overflow-hidden border-t', 'mb-[200px]')}>
         <Table className={cn('w-full', className)}>
             <TableHeader>
                 <TableRow>
@@ -56,13 +55,12 @@ const ConstructorStandingsTable = ({ className, year = YEAR }: { className?: str
                 {constructorStandings?.map((constructor: ConstructorStanding) => (
                     <TableRow key={constructor.constructor_id}>
                         <TableCell className="text-right">{constructor.position_number}</TableCell>
-                        <TableCell>{constructor.full_name}</TableCell>
+                        <TableCell className="text-left">{constructor.full_name}</TableCell>
                         <TableCell className="text-right">{constructor.points}</TableCell>
                     </TableRow>
                 ))}
             </TableBody>
         </Table>
-        // </ScrollArea>
     );
 };
 

@@ -66,31 +66,25 @@ const App = () => {
                             lg:border-blue-300 
                             xl:border-green-300 
                             border-slate-700 
-                            absolute top-0 
-                            left-0 
+                            absolute
+                            top-0
+                            left-0
+                            right-0
                             w-full
                             h-[1px] 
-                            z-50 
                             bg-zinc-550"
                 ></div>
 
                 <Header />
 
-                {/* <main
-                    className="
-                    xl:pl-20 xl:pr-20
-                    lg:pl-10 lg:pr-10
-                    md:pl-10 md:pr-10
-                    sm:pl-4 sm:pr-4
-                    pl-1 pr-1 w-[100vw]"
-                > */}
                 <main
                     className="
-                    w-full
-                    md:w-[80%] 
-                    lg:w-[70%]
-                    xl:w-[60%]
-                    max-w-screen-xl 
+                    w-[95%]
+                    sm:w-full
+                    md:w-[90%] 
+                    lg:w-[85%]
+                    xl:w-[80%]
+                    max-w-screen-xl
                     mx-auto
                 "
                 >
