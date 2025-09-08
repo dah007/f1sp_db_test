@@ -20,7 +20,6 @@ import { setError } from '@/slices/systemWideSlice';
 import { ExtendedColumnDef } from '@/types/dataTable';
 import { RaceResultProps } from '@/types/races';
 import { LinkRenderer } from '@/utils/dataTableRenderers';
-import { intlNumberFormat } from '@/utils/number';
 import { GetInVisibleColumn, groupWinnersWithChildren, Item } from '@/utils/tables';
 import {
     ColumnDef,
@@ -144,23 +143,6 @@ const PreviousResultsTable: React.FC<{ circuitId: string }> = ({
                     onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
                 >
                     Time
-                    <ArrowUpDown className="w-4 h-4 ml-2" />
-                </Button>
-            ),
-        },
-        {
-            accessorKey: 'time_penalty',
-            size: 15,
-            cell: ({ row }) => (
-                <div className="text-right w-full">{intlNumberFormat(row.getValue('time_penalty'))}</div>
-            ),
-            header: ({ column }) => (
-                <Button
-                    variant="ghost"
-                    className="cursor-pointer"
-                    onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
-                >
-                    Penalty
                     <ArrowUpDown className="w-4 h-4 ml-2" />
                 </Button>
             ),
@@ -298,6 +280,21 @@ const PreviousResultsTable: React.FC<{ circuitId: string }> = ({
                     </Button>
                 );
             },
+        },
+        {
+            accessorKey: 'time_penalty',
+            size: 15,
+            cell: ({ row }) => <div className="text-right w-full">{row.getValue('time_penalty')}</div>,
+            header: ({ column }) => (
+                <Button
+                    variant="ghost"
+                    className="cursor-pointer"
+                    onClick={() => column.toggleSorting(column.getIsSorted() === 'asc')}
+                >
+                    Penalty
+                    <ArrowUpDown className="w-4 h-4 ml-2" />
+                </Button>
+            ),
         },
     ];
 

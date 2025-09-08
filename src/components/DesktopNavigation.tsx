@@ -1,5 +1,6 @@
 'use client';
-
+import React from 'react';
+// import { useAppSelector } from '@/app/store';
 import {
     NavigationMenu,
     NavigationMenuContent,
@@ -7,16 +8,29 @@ import {
     NavigationMenuLink,
     NavigationMenuList,
     NavigationMenuTrigger,
-} from '@/components/ui/navigation-menu';
+} from 'components/ui/navigation-menu';
 import { cn } from 'lib/utils';
-import React from 'react';
-import { constructorMenuItems, driverMenuItems, raceMenuItems, seasonsMenuItems } from './Header';
+// import { constructorMenuItems, driverMenuItems, raceMenuItems, seasonsMenuItems } from './Header';
 
 const menuButton =
     'text-forground dark:text-zinc-300 hover:text-zinc-500 dark:hover:text-zinc-300 font-extrabold text-xl border-0 bg-transparent';
 const menuItemBG = 'bg-zinc-300 dark:bg-zinc-800 border border-zinc-600 dark:border-zinc-700 rounded-md shadow-md';
 
-export function DesktopNavigation() {
+export function DesktopNavigation({
+    constructorMenuItems,
+    driverMenuItems,
+    raceMenuItems,
+    seasonsMenuItems,
+}: {
+    constructorMenuItems: { title: string; href: string; description: string }[];
+    driverMenuItems: { title: string; href: string; description: string }[];
+    raceMenuItems: { title: string; href: string; description: string }[];
+    seasonsMenuItems: { title: string; href: string; description: string }[];
+}) {
+    // const raceNextRaw = useAppSelector((state) => state.races.raceNext) as RaceNextProps;
+    // const raceNext = useMemo(() => raceNextRaw, [raceNextRaw]);
+    console.log('raceMenuItems:', raceMenuItems);
+
     return (
         <div className="flex flex-col w-full">
             <NavigationMenu>

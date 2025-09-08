@@ -1,5 +1,4 @@
 import { RootState, useAppDispatch, useAppSelector } from '@/app/store';
-import PreviousResultsTable from '@/components/Race/PreviousResultsTable';
 import RaceDetailHeader from '@/components/Race/RaceDetailHeader';
 import { CIRCUIT_DETAILS } from '@/constants/circuitConstants';
 import { useGetLastRaceResultsQuery, useGetRaceWithGPQuery } from '@/features/raceApi';
@@ -122,7 +121,7 @@ const RaceLastRoute = () => {
 
                 {JSON.stringify(dataResults)}
 
-                <PreviousResultsTable circuitId={dataResults ? dataResults[0].circuit_id : ''} />
+                {/* <PreviousResultsTable circuitId={dataResults ? dataResults[0].circuit_id : ''} /> */}
             </div>
         </>
     );
