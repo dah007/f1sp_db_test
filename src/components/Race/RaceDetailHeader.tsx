@@ -20,7 +20,6 @@ const RaceDetailHeader: React.FC<{ race: Partial<RaceProps> }> = ({ race }): JSX
                     <div className="text-xl font-bold r-2 krona-one-regular">When</div>
                     <div className="pl-4 border-b-2 border-zinc-700 dark:border-zinc-500">
                         {new Date(`${race.date}T${race.time || '00:00:00'}Z`).toLocaleString('en-US', {
-                            // timeZone: 'UTC',
                             dateStyle: 'medium',
                             timeStyle: 'short',
                         })}
