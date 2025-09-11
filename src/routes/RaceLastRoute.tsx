@@ -64,7 +64,7 @@ const RaceLastRoute = () => {
             </div>
 
             <div className="w-full border-t-1 border-zinc-700 dark:border-zinc-500 mt-4 pt-4">
-                <h2 className="text-xl font-bold mb-2 krona-one-regular">WTF RESULTS Previous Results</h2>
+                <h2 className="text-xl font-bold mb-2 krona-one-regular">Previous Results</h2>
 
                 {JSON.stringify(dataResults)}
 
