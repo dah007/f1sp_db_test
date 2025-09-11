@@ -4,7 +4,6 @@ import { RaceProps } from '@/types/races';
 const RaceDetailHeader: React.FC<{ race: Partial<RaceProps> }> = ({ race }): JSX.Element => {
     if (!race) return <></>;
 
-    console.log('race:', race);
 
     const circuitDetails = CIRCUIT_DETAILS[race.circuit_id as keyof typeof CIRCUIT_DETAILS];
 
