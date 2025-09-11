@@ -1,6 +1,5 @@
 import { RootState, useAppDispatch, useAppSelector } from '@/app/store';
 import RaceDetailHeader from '@/components/Race/RaceDetailHeader';
-import { CIRCUIT_DETAILS } from '@/constants/circuitConstants';
 import { useGetLastRaceResultsQuery, useGetRaceWithGPQuery } from '@/features/raceApi';
 import { setLastRaceResults, setRaceWGP } from '@/slices/racesSlice';
 import { setError, setLoading } from '@/slices/systemWideSlice';
@@ -58,63 +57,11 @@ const RaceLastRoute = () => {
 
     if (!raceWGP) return <></>;
 
-    const circuitDetails = CIRCUIT_DETAILS[raceWGP.circuit_id as keyof typeof CIRCUIT_DETAILS];
-
     return (
         <>
             <div className="flex flex-col justify-between items-center m-0 p-0 pb-8 bg-zinc-800 border-b border-zinc-700">
                 <RaceDetailHeader race={raceWGP as unknown as RaceProps} />
-                <div className="flex justify-evenly items-center gap-4 w-full p-4">
-                    <div>
-                        <div className="text-xl font-bold r-2 krona-one-regular">When</div>
-                        <div className="pl-4 border-b-2 border-zinc-700 dark:border-zinc-500">
-                            {raceWGP.date} @ {raceWGP.time || 'TBD'} local time
-                        </div>
-
-                        <div className="text-xl font-bold r-2 krona-one-regular">Where</div>
-                        <div className="pl-4 border-b-2 border-zinc-700 dark:border-zinc-500">
-                            {circuitDetails?.place_name || 'N/A'}
-                        </div>
-
-                        <div className="text-xl font-bold r-2 krona-one-regular">Round</div>
-                        <div className="pl-4 border-b-2 border-zinc-700 dark:border-zinc-500">
-                            {raceWGP.round || 'TBD'} of {raceWGP.total_rounds || 'TBD'}
-                        </div>
-
-                        <div className="text-xl font-bold r-2 krona-one-regular">Circuit Length</div>
-                        <div className="pl-4 border-b-2 border-zinc-700 dark:border-zinc-500">
-                            {(circuitDetails?.length ?? 1) / 1000 || 'TBD'} km
-                        </div>
-
-                        <div className="text-xl font-bold r-2 krona-one-regular">More Info</div>
-                        <div className="pl-4">
-                            {raceWGP?.circuit_id &&
-                                CIRCUIT_DETAILS[raceWGP.circuit_id as keyof typeof CIRCUIT_DETAILS]?.wiki && (
-                                    <a
-                                        className="text-blue-500 hover:underline"
-                                        href={
-                                            CIRCUIT_DETAILS[raceWGP.circuit_id as keyof typeof CIRCUIT_DETAILS].wiki ??
-                                            ''
-                                        }
-                                        rel="noreferrer"
-                                        target="_blank"
-                                    >
-                                        WiKi
-                                    </a>
-                                )}
-                        </div>
-                    </div>
-
-                    <div>
-                        <img
-                            className="max-w-[300px]"
-                            alt={raceWGP.official_name || raceWGP.circuit_id}
-                            src={`/assets/tracks/${raceWGP.circuit_id}.png`}
-                        />
-                    </div>
-                </div>
             </div>
-            {/* ? END HEADER! */}
 
             <div className="w-full border-t-1 border-zinc-700 dark:border-zinc-500 mt-4 pt-4">
                 <h2 className="text-xl font-bold mb-2 krona-one-regular">WTF RESULTS Previous Results</h2>

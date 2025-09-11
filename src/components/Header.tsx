@@ -71,7 +71,6 @@ export const driverMenuItems: { title: string; href: string; description: string
     },
 ];
 export const raceMenuItems = (raceNext: RaceNextProps): { title: string; href: string; description: string }[] => {
-    console.log('raceNext:', raceNext);
     return raceNext
         ? [
               {

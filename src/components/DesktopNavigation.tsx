@@ -27,10 +27,6 @@ export function DesktopNavigation({
     raceMenuItems: { title: string; href: string; description: string }[];
     seasonsMenuItems: { title: string; href: string; description: string }[];
 }) {
-    // const raceNextRaw = useAppSelector((state) => state.races.raceNext) as RaceNextProps;
-    // const raceNext = useMemo(() => raceNextRaw, [raceNextRaw]);
-    console.log('raceMenuItems:', raceMenuItems);
-
     return (
         <div className="flex flex-col w-full">
             <NavigationMenu>

@@ -5,29 +5,25 @@ import PreviousResultsTable from 'components/Race/PreviousResultsTable';
 import RaceDetailHeader from 'components/Race/RaceDetailHeader';
 
 import { CIRCUIT_DETAILS } from 'constants/circuitConstants';
-import type { RaceNextProps, RaceProps } from 'types/races';
 
 const RaceNextRoute = () => {
-    const raceNext = useAppSelector((state) => state.races.raceNext) as RaceNextProps;
+    const raceNext = useAppSelector((state) => state.races.raceNext);
 
     // const [openedAccordion, setOpenedAccordion] = useState<string | null>(null);
 
     const circuitId = raceNext?.circuit_id || '';
     if (!raceNext) return <></>;
 
-    console.log('raceNext:', raceNext);
-
     const circuitDetails = CIRCUIT_DETAILS[raceNext.circuit_id as keyof typeof CIRCUIT_DETAILS];
 
     if (!circuitDetails) return <></>;
 
-    console.log('circuitDetails:', circuitDetails);
-
     return (
         <>
             <div className="flex flex-col justify-between items-center m-0 p-0 pb-8 border border-zinc-700 bg-gradient-to-r from-zinc-900 to-zinc-800 rounded-xl">
-                <RaceDetailHeader race={circuitDetails as unknown as RaceProps} />
-                <div className="flex justify-evenly items-center gap-4 w-full p-4">
+                <RaceDetailHeader race={raceNext} />
+
+                {/* <div className="flex justify-evenly items-center gap-4 w-full p-4">
                     <div>
                         <div className="text-xl font-bold r-2 krona-one-regular">When?</div>
                         <div className="pl-4 border-b-2 border-zinc-700 dark:border-zinc-500">
@@ -41,7 +37,7 @@ const RaceNextRoute = () => {
 
                         <div className="text-xl font-bold r-2 krona-one-regular">Round</div>
                         <div className="pl-4 border-b-2 border-zinc-700 dark:border-zinc-500">
-                            {raceNext.round || 'TBD'} of {raceNext.total_rounds || 'TBD'}
+                            {raceNext.round || '-'} of {raceNext.total_races || '-'}
                         </div>
 
                         <div className="text-xl font-bold r-2 krona-one-regular">Circuit Length</div>
@@ -75,7 +71,7 @@ const RaceNextRoute = () => {
                             src={`/assets/tracks/${raceNext.circuit_id}.png`}
                         />
                     </div>
-                </div>
+                </div> */}
             </div>
             {/* ? END HEADER! */}
 
