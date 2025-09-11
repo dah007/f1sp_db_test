@@ -221,20 +221,20 @@ const Home: React.FC = () => {
                                 {raceWGP ? raceWGP.official_name : 'N/A'}
                             </CardTitle>
                         </CardHeader>
-                        <CardContent className={cn('z-10')}>
+                        <CardContent className={'z-10'}>
                             <LastRaceResultsPod />
                         </CardContent>
                     </Card>
 
                     <Card
-                        className={cn(
-                            'overflow-y-scroll overflow-x-hidden w-full p-0 m-0 h-[30vh] custom-scrollbar col-1 row-2',
-                        )}
+                        className={cn('overflow-y-scroll overflow-x-hidden w-full p-0 m-0 h-[30vh] custom-scrollbar')}
                     >
-                        <CardHeader className="sticky bg-zinc-900 top-0 left-0">
-                            <CardTitle>Constructors Standings</CardTitle>
+                        <CardHeader className="sticky bg-zinc-900 top-0 left-0 z-20">
+                            <CardTitle className={cn('h-8 bg-zinc-900 pl-4')}>
+                                {raceWGP ? raceWGP.official_name : 'N/A'}
+                            </CardTitle>
                         </CardHeader>
-                        <CardContent>
+                        <CardContent className={'z-10'}>
                             <ConstructorStandings />
                         </CardContent>
                     </Card>

@@ -22,7 +22,11 @@ function CardContent({ className, ...props }: React.ComponentProps<'div'>) {
 }
 
 function CardDescription({ className, ...props }: React.ComponentProps<'div'>) {
-    return <CardComponentDescription className={cn('', className)} {...props} />;
+    return (
+        <div className={cn('pl-4 pt-0')}>
+            <CardComponentDescription className={cn('', className)} {...props} />
+        </div>
+    );
 }
 
 function CardFooter({ className, ...props }: React.ComponentProps<'div'>) {

@@ -1,10 +1,12 @@
 /* eslint-disable react-refresh/only-export-components */
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 
-import { YEAR } from '@/constants/constants';
+import { useAppSelector } from 'app/store';
+import { YEAR } from 'constants/constants';
 import { cn } from 'lib/utils';
 import { LucideCoffee } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { RaceNextProps } from 'types/races';
 import { DesktopNavigation } from './DesktopNavigation';
 import { Button } from './ui/button';
 import F1SPlogoHorizontal from '/assets/f1sp-logo_horizontal.svg';
@@ -68,39 +70,44 @@ export const driverMenuItems: { title: string; href: string; description: string
         description: 'Top 100 drivers with the most points without a win.',
     },
 ];
-export const raceMenuItems: { title: string; href: string; description: string }[] = [
-    {
-        title: 'Next Race',
-        href: `/race/1138`,
-        description: 'View details about the next race.',
-    },
-    {
-        title: 'Last Race',
-        href: `/race/last`,
-        description: 'View details about the last race.',
-    },
-    {
-        title: 'Current Season',
-        href: `/races`,
-        description: "View the current season's races. New current season interface coming some.",
-    },
-    {
-        title: 'Circuits',
-        href: `/circuits`,
-        description: "View the current season's circuits.",
-    },
-    {
-        title: 'All Races',
-        href: '/races',
-        description:
-            'Changing to a season by season view soon. Table of results, single table view for a given season with filtering.',
-    },
-    {
-        title: 'Records',
-        href: '/races/records',
-        description: 'View race records and statistics. (coming soon)',
-    },
-];
+export const raceMenuItems = (raceNext: RaceNextProps): { title: string; href: string; description: string }[] => {
+    return raceNext
+        ? [
+              {
+                  title: 'Next Race',
+                  href: `/race/next/${raceNext?.id ?? 0}`,
+                  description: 'View details about the next race.',
+              },
+              {
+                  title: 'Last Race',
+                  href: `/race/last`,
+                  description: 'View details about the last race.',
+              },
+              {
+                  title: 'Current Season',
+                  href: `/races`,
+                  description: "View the current season's races. New current season interface coming some.",
+              },
+              {
+                  title: 'Circuits',
+                  href: `/circuits`,
+                  description: "View the current season's circuits.",
+              },
+              {
+                  title: 'All Races',
+                  href: '/races',
+                  description:
+                      'Changing to a season by season view soon. Table of results, single table view for a given season with filtering.',
+              },
+              {
+                  title: 'Records',
+                  href: '/races/records',
+                  description: 'View race records and statistics. (coming soon)',
+              },
+          ]
+        : [];
+};
+
 export const seasonsMenuItems: { title: string; href: string; description: string }[] = [
     {
         title: 'Current Season',
@@ -174,6 +181,12 @@ const toggleMenu = () => {
  */
 const Header: React.FC = () => {
     const navigate = useNavigate();
+    const raceNextRaw = useAppSelector((state) => state.races.raceNext) as RaceNextProps;
+    const raceNext = useMemo(() => raceNextRaw, [raceNextRaw]);
+    const getRaceMenuItems = useCallback(
+        (raceNext: RaceNextProps): { title: string; href: string; description: string }[] => raceMenuItems(raceNext),
+        [],
+    );
 
     /**
      * Navigates to the specified path and toggles the menu state.
@@ -254,7 +267,12 @@ const Header: React.FC = () => {
                 </button>
             </div> */}
             <div className="hidden lg:block w-full">
-                <DesktopNavigation />
+                <DesktopNavigation
+                    constructorMenuItems={constructorMenuItems}
+                    driverMenuItems={driverMenuItems}
+                    raceMenuItems={getRaceMenuItems(raceNext)}
+                    seasonsMenuItems={seasonsMenuItems}
+                />
             </div>
             {/* MOBILE MENU */}
             <ul id="menu" className="hidden fixed top-0 right-0 px-10 py-16 bg-zinc-900 z-50">
@@ -272,7 +290,7 @@ const Header: React.FC = () => {
                         </li>
 
                         <ul className="ml-4 mt-0">
-                            {raceMenuItems.map((component) => (
+                            {getRaceMenuItems(raceNext).map((component) => (
                                 <li key={component.title}>
                                     <MenuButton
                                         label={component.title}

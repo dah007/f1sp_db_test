@@ -12,6 +12,10 @@ import { createApi } from '@reduxjs/toolkit/query/react';
  * https://learn.microsoft.com/en-us/azure/search/search-filters
  */
 
+/*
+    TODO: Clean up this file, remove deprecated endpoints, use same coding standards for all other endpoints
+*/
+
 export const raceApi = createApi({
     baseQuery: baseQueryWithRetry,
     endpoints: (builder) => ({
@@ -306,7 +310,7 @@ export const {
     useGetRaceNextQuery,
     useGetRaceQuery,
     useGetRaceResultsWithQualQuery,
-    useGetRaceWinnerQuery,
+    // useGetRaceWinnerQuery,
     useGetRaceWithGPQuery,
     useGetRacesQuery,
     useGetRacesResultsWithQualQuery,
